@@ -1,0 +1,14 @@
+{
+    "name": "julie/test",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+            "App\\Controllers\\": "App/Controllers/",
+            "App\\Models\\": "App/Models/"
+        }
+    },
+    "require": {
+        "mobizon/mobizon-php": "^2.0",
+        "chillerlan/php-qrcode": "^6.0"
+    }
+}

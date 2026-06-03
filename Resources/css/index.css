@@ -1,0 +1,1931 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg: grey;
+  --hover: #4b4b4b75;
+  --clr1: orange;
+  --clr2: orangered;
+  --clr3: purple;
+  --text: whitesmoke;
+}
+html{
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--bg);
+  font-family: "Poppins", sans-serif;
+}
+.logo{
+  height: 60px;
+  /* margin-left: -20px; */
+  overflow: hidden;
+  margin: 10px;
+  cursor: pointer;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  margin-top: 0;
+  width: 100%;
+  background-color: #4b4b4bb7;
+  color: var(--clr1);
+  height: 80px;
+  padding: 0 20px;
+  align-items: center;
+  z-index:1001;
+}
+nav .label {
+  font-size: 40px;
+}
+nav .label:hover {
+  cursor: pointer;
+}
+nav .auth,
+nav .userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+nav .userinfo p{
+  color:white;
+  margin-right: 10px;
+}
+nav .userinfo p:hover{
+  cursor: default;
+  text-decoration: underline;
+}
+nav .auth a,
+nav .userinfo a {
+  background-color: var(--clr1);
+  color: white;
+  text-decoration: none;
+  height: 25px;
+  padding: 5px;
+  margin: 5px;
+  /* border-radius: 5px; */
+}
+nav .auth a:hover,
+nav .userinfo a:hover {
+  background: var(--clr2);
+}
+nav .nav-items {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav .nav-items li {
+  margin-right: 1.5rem;
+  text-align: center;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: 0.7s ease;
+}
+nav .nav-items li a {
+  font-size: clamp(5rem 8vw 10rem);
+  color: white;
+  text-decoration: none;
+}
+nav .nav-items a.active {
+  font-weight: bolder;
+}
+nav .nav-items a:hover {
+  position: relative;
+  z-index: 1;
+  transform: scale(1.2);
+}
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+main {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  /* margin-top:40px; */
+  padding-top: 100px;
+}
+/* block */
+.block {
+  margin: 10px;
+  padding: 10px;
+  /* border-radius: 5px; */
+  background-color: var(--hover);
+
+  width: inherit;
+  height: inherit;
+}
+
+.block.not-visible {
+  box-shadow: none;
+  margin: 10px;
+  background-color: transparent;
+  padding: 0;
+}
+.block-with-width80 {
+  width: 80%;
+}
+
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px;
+  padding: 10px;
+  width: 80%;
+}
+
+.options h4 {
+  color: var(--text);
+}
+
+.options .search input {
+  height: 25px;
+  /* border-radius: 3px; */
+  border: 1px grey solid;
+  padding: 5px;
+}
+
+.options .filter {
+  flex-wrap: wrap;
+}
+
+.button-filter {
+width: fit-content;
+}
+.button.active{
+    background-color: var(--clr2);
+}
+
+/* buttons */
+
+button {
+  height: 30px;
+  width: 100%;
+  margin: 5px;
+  border: 0;
+  /* border-radius: 5px; */
+  background: var(--clr1);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.options button {
+  height: 25px;
+  margin: 8px 5px;
+  padding: 2px 4px;
+}
+button:hover {
+  background: var(--clr2);
+}
+button:active {
+  background: var(--clr1);
+}
+button:focus {
+  outline: none;
+}
+
+/* flex */
+.row,
+.column {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-wrap{
+  flex-wrap: wrap;
+}
+.row {
+  flex-direction: row;
+  height: -webkit-fill-available;
+}
+
+.column {
+  flex-direction: column;
+  width: -webkit-fill-available;
+}
+
+.j-c-start {
+  justify-content: flex-start;
+}
+
+.j-c-end {
+  justify-content: flex-end;
+}
+
+.j-c-center {
+  justify-content: center;
+}
+
+.j-c-around {
+  justify-content: space-around;
+}
+
+.j-c-evenly {
+  justify-content: space-evenly;
+}
+
+.a-c-center {
+  align-items: center;
+}
+
+.a-i-end {
+  align-items: flex-end;
+}
+
+/* other */
+.h-full {
+  height: 100%;
+}
+
+.h-half {
+  height: 50%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-half {
+  width: 50%;
+}
+.text-white {
+  color: var(--text);
+}
+.text-light{
+  /* color: lightgray; */
+  font-weight: lighter;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.text-bold{
+  /* color: lightgray; */
+  font-weight: bold;
+}
+.empty-data {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.empty-data h3 {
+  color: var(--text);
+}
+
+/* seanses */
+#seanses_grid {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 31% 31% 31%;
+  gap: 3.5%;
+  padding-top: 12.5px;
+  background: transparent;
+}
+#seanses_grid .film-card {
+  position: relative;
+  color: var(--text);
+  height: 200px;
+  /* border-radius: 10px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: var(--hover);
+}
+#seanses_grid .film-card .info {
+  width:80%;
+}
+#seanses_grid .film-card .button-detail {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 25px;
+  height: 25px;
+}
+#seanses_grid .film-card > div {
+  padding: 5px;
+  color: var(--text);
+}
+#seanses_grid .film-card img {
+  height: 100%;
+  width: 50%;
+
+  /* border-radius: 10px 0 0 10px; */
+}
+
+.seanses-grid{
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.seanse-item {
+  margin: 1px;
+  padding: 2.5px;
+  width: fit-content;
+  border: 1px solid var(--clr1);
+  background-color: var(--clr1);
+  color: #fff2e0;
+  /* background-color: #fff2e0; */
+  text-align: center;
+  /* color: var(--clr1); */
+  /* border-radius: 5px; */
+}
+.seanse-item.not-usable{
+  cursor:default;
+}
+.seanse-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  color: var(--text);
+  width: 100%;
+  height: 100%;
+}
+.seanse-item:hover {
+  cursor: pointer;
+  background-color: var(--clr2);
+  border-color:var(--clr2);
+}
+.seanse-item.not-usable:hover{
+  cursor:default;
+  border: 1px solid var(--clr1);
+  background-color: var(--clr1);
+}
+#seanses_grid_by_time{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  color: var(--text);
+}
+.seanse-card{
+  background-color: var(--hover);
+  height: fit-content;
+  padding: 10px;
+  position:relative;
+}
+.seanse-card .icon{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color:var(--clr1);
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+/* film */
+#film_info {
+  width: 100%;
+  min-height: 80vh;
+  height: auto;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 15% 45% 35%;
+  grid-template-areas:
+    "poster info reviews"
+    "seanses seanses reviews";
+  grid-gap: 10px;
+  padding: 20px;
+  color: var(--text);
+}
+#film_info #poster {
+  grid-area: poster;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#film_info #poster img {
+  height:-webkit-fill-available;
+  width: 100%;
+}
+#film_info #info {
+  grid-area: info;
+  padding: 10px;
+  background-color: var(--hover);
+}
+#film_info #info h4 {
+  font-size: 30px;
+}
+#film_info #info > * {
+  margin-bottom: 10px;
+}
+#film_info #seanses {
+  grid-area: seanses;
+  padding: 10px;
+}
+#film_info #seanses h4,
+#film_info #seanses h2 {
+  margin-bottom: 10px;
+}
+#film_info #seanses_on_film {
+  display: grid;
+  grid-template-columns: 19% 19% 19% 19% 19%;
+  gap: 10px;
+}
+#film_info .seanses-on-day {
+  background-color: var(--hover);
+  padding: 5px;
+}
+#film_info .seanses-on-day h4 {
+  text-align: center;
+}
+#film_info #reviews {
+  grid-area: reviews;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: transparent;
+}
+
+#film_info #reviews .rating{
+  margin-bottom: 10px;
+}
+#film_info #reviews input {
+  width: 30%;
+  background-color: gray;
+  margin: 0;
+}
+#film_info #reviews textarea {
+  width: 100%;
+  background-color: gray;
+  margin-bottom: 10px;
+  color: var(--text);
+  padding: 10px;
+  resize:vertical;
+}
+#film_info #reviews textarea::placeholder {
+  color: var(--text);
+}
+#film_info #reviews button {
+  width: 40%;
+  padding: 0 5px;
+}
+.review-item {
+  position: relative;
+  background: var(--hover);
+  padding: 10px;
+  color: var(--text);
+  margin: 10px;
+}
+
+.review-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.review-item h4 {
+  margin-right: 5px;
+}
+.review-item .icon{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+.review-active{
+  border: 2px solid var(--clr1);
+}
+#answer{
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  /* background-color: var(--hover); */
+  padding: 10px;
+  color: var(--text);
+  margin-bottom: 10px;
+  border-left: 4px solid var(--hover);
+}
+#answer .icon{
+  position:absolute;
+  top: 10px;
+  right: 10px;
+  cursor:pointer;
+}
+#answer p{
+  margin-bottom: 10px;
+}
+#answer small{
+  margin-left: 10px;
+}
+.button-icon {
+  width: 25px;
+  height: 25px;
+}
+/* profile */
+#profile {
+  width: 100%;
+  min-height: 80vh;
+  height: auto;
+  display: grid;
+  grid-template-rows:min-content 34% 33%;
+  grid-template-columns: 25% 75%;
+  grid-template-areas:
+    "info basket "
+    "achievements achievements"
+    "history history";
+  grid-gap: 10px;
+  padding: 20px;
+  color: var(--text);
+}
+#profile #profile_basket {
+  grid-area: basket;
+  /* overflow-y: scroll; */
+  padding: 10px;
+  width: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
+}
+
+#profile #profile_basket>.row{
+  overflow-y: scroll;
+  /* height:200px; */
+  /* margin: 10px; */
+}
+#profile #profile_info {
+  grid-area: info;
+  width: -webkit-fill-available;
+  position:relative;
+  /* min-height: min-content; */
+}
+#profile #profile_reviews {
+  grid-area: reviews;
+  
+}
+#profile #profile_history {
+  grid-area: history;
+  height: fit-content;
+  min-height: 100px;
+}
+#profile #profile_achievements {
+  grid-area: achievements;
+}
+
+#profile_info p{
+  margin:5px;
+
+}
+
+#profile_info .img{
+  position:relative;
+  margin:10px;
+
+}
+
+#profile_info .img img{
+  position:relative;
+  margin: 0;
+
+}
+
+#profile_info .img button{
+  position:absolute;
+  margin: 0;
+  bottom:5px;
+  left:0px;
+  
+}
+/* ticket buy */
+#ticket_sell{
+  width:80%;
+  color:var(--text)
+}
+#ticket_sell_film_info{
+  height: 150px;
+  color: var(--text);
+  }
+  
+  #ticket_sell_film_info img{
+      margin-right: 10px;
+      height: 100%;
+  }
+  
+  #choosed_tickets{
+      color: var(--text);
+      position: relative;
+      height: -webkit-fill-available;
+      height: 620px;
+      width: 30%;
+  
+  }
+  /* #choosed_tickets>.row{ ... replaced by .ticket-cart-footer } */
+
+  /* styles by chatGPT */
+  /* Контейнер з рядами */
+  #hole_places {
+      min-height: 450px;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      /* border-radius: 10px; */
+      justify-content: center;
+    }
+    
+    /* Рядок місць */
+    #hole_places .row {
+      display: flex;
+      height: fit-content;
+      justify-content: center;
+      gap: 6px;
+    }
+    
+    /* Приховуємо стандартний чекбокс */
+    #hole_places input[type="checkbox"] {
+      display: none;
+    }
+    
+    /* Створюємо кастомне місце */
+    #hole_places input[type="checkbox"] + label {
+      display: inline-block;
+      width: 25px;
+      height: 30px;
+      background: #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    /* Ховер ефект */
+    #hole_places input[type="checkbox"] + label:hover {
+      background: #b3b3b3;
+    }
+    
+    /* Обране місце */
+    #hole_places input[type="checkbox"]:checked + label {
+      background: orange;
+    }
+    
+    /* Зайняте місце */
+    #hole_places input[type="checkbox"]:disabled + label {
+      background: #ff4d4d;
+      cursor: not-allowed;
+    }
+    /* Блок кошика */
+  /* #choosed_tickets {
+      
+  } */
+  #choosed_tickets h3 {
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+  }
+  #choosed_tickets #sum_and_button{
+    height: 20px;
+    bottom: 20px;
+    width: 90%;
+    position: absolute;
+  }
+  #choosed_tickets h4 {
+      font-weight: normal;
+  }
+  /* Список квитків */
+  #choosed_tickets .ticket {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      padding-top: 5px;
+      /* align-items: center; */
+      border:2px solid #d4af37;
+      border-radius: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position:relative;
+      background: #fff5d7;
+      transition: .5s;
+  }
+  #choosed_tickets_list{
+      height: -webkit-fill-available;
+      overflow-y: scroll;
+      justify-content: start;
+  }
+  .ticket .info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 80%;
+      font-size: 0.9rem;
+      color: #d4af37;
+      padding: 10px;
+  }
+  
+  .ticket .info span {
+      margin: 1px 0;
+  }
+  
+  .ticket .price {
+      border-top:2px dashed #d4af37;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 10px;
+      color: #d4af37;
+      
+  }
+  
+  /* Кнопка видалення квитка (хрестик) */
+  .ticket .remove-btn {
+      background: none;
+      position: absolute;
+      top:5px;
+      right:10px;
+      border: none;
+      color: #d4af37;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 10px;
+      width: fit-content;
+      font-weight: bold;
+      transition: .5s;
+  }
+  
+  .ticket .remove-btn:hover {
+      color: #7c661c;
+  }
+  
+  #hole_places{
+  /* overflow-y: scroll; */
+  height: 350px;
+  }
+  .hole-row{
+      height: min-content;
+  }
+  .hole-place{
+      height: 25px;
+      width: 20px;
+      background-color: grey;
+      margin: 2px 2px;
+      border-radius: 3px;
+      color:grey;
+      text-align: center;
+      align-content: center;
+      transition: 0.2s;;
+  }
+  .hole-place:hover{
+      color: white;
+      cursor:pointer;
+  }
+  
+  .hint{
+      color:var(--btn);
+  }
+  .hint:hover{
+      cursor:pointer;
+  }
+
+  
+  /* reviews */
+
+
+  #review_answers{
+    color:var(--text);
+    min-height: 150px;
+    height: fit-content;
+    
+  }
+
+  #reviews_my{
+    color:var(--text);
+    min-height: 150px;
+    height: fit-content;
+    
+  }
+
+  .empty-list{
+    /* center text in div */
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    color: lightgray;
+  }
+  
+  .empty-list p{
+
+    text-align: center;
+    
+  }
+  .page-title{
+    color: var(--text);
+  }
+  .basket-item{
+    position:relative;
+    color: var(--text);
+    width: 120px;
+    min-height: 200px;
+    height: fit-content;
+    padding: 10px;
+    margin: 5px;
+    background: var(--hover);
+
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+
+  }
+  .basket-item *{
+    margin-bottom: 3px;
+  }
+
+  .basket-item > .row.j-c-end {
+    margin-top: auto;
+    justify-content: flex-end;
+    gap: 4px;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+  .basket-item > .row.j-c-end .button-icon {
+    position: static;
+    width: 30px;
+    height: 30px;
+  }
+  /* .basket-item:hover button{
+    display: block;
+  } */
+  .achievement-user-item{
+    color: var(--text);
+    width: 120px;
+    height: 200px;
+    padding: 10px;
+    margin: 10px;
+    background: var(--hover);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-start;
+    transition: 0.3s;
+    position:relative;
+    border-radius: 5px;
+  }
+  .achievement-user-item p{
+    font-size: medium;
+    text-align: center;
+  }
+  .achievement-user-item span{
+    font-size: 15px;
+  }
+  .achievement-user-item img{
+    height: 80px;
+    width: 80px;
+    margin:15px 0;
+    filter: grayscale(100%);
+  }
+.achievement-user-item img.achieved {
+  filter: none; /* кольорове */
+}
+
+  .achievement-user-item img.in_progress {
+    filter: grayscale(1); /* ч/б */
+  }
+  
+  /* .achievement-user-item img.not_started {
+    filter: grayscale(1) opacity(0.5); блідий
+  } */
+  .achievement-user-item .info-icon{
+    position:absolute;
+    top:10px;
+    right:10px;
+    transition: .2s;
+  }
+  .achievement-user-item:hover .info-icon{
+    top:7px;
+  }
+  .achievement-user-item .info-icon:hover{
+    cursor:pointer;
+  }
+  .achievement-progress-bar{
+    width: 100%;
+    margin: 5px;
+    height: 5px;
+    border-radius: 3px;
+    background-color: whitesmoke;
+  }
+  .achievement-progress-bar-current{
+    background-color: limegreen;
+    height: 5px;
+    border-radius: 3px;
+  }
+
+  #profile_history > .row.j-c-start.flex-wrap {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 200px));
+    gap: 8px;
+    padding: 4px;
+    width: 100%;
+  }
+
+  .watched-film-item {
+    margin: 0;
+    padding: 8px;
+    background-color: var(--hover);
+    width: 100%;
+    max-width: 200px;    
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .watched-film-item img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+  }
+  .watched-film-item h4 {
+    font-size: 0.85rem;
+    cursor: pointer;
+    word-break: break-word;
+  }
+  .watched-film-item h4:hover { text-decoration: underline; }
+  .watched-film-item p {
+    font-size: 0.78rem;
+    color: #ccc;
+    margin: 0;
+  }
+  .watched-film-item .achievemnts-list {
+    flex-wrap: wrap;
+    gap: 2px;
+  }
+  .watched-film-item .achievemnts-list img {
+    width: 20px;
+    height: 20px;
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
+
+  @media (max-width: 700px) {
+    #profile_history > .row.j-c-start.flex-wrap {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .watched-film-item {
+      max-width: 100%;   
+    }
+  }
+
+  .seanse-history-item{
+    width: 95%;
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--hover) ;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+  }
+  .seanse-history-item .shi-tickets{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    
+  }
+  .shi-tickets h3 {
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+  }
+  
+  .shi-tickets h4 {
+      font-weight: normal;
+  }
+  /* Список квитків */
+  .shi-tickets .ticket {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      padding-top: 5px;
+      /* align-items: center; */
+      border:2px solid #d4af37;
+      border-radius: 5px;
+      width: 140px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position:relative;
+      background: #fff5d7;
+      transition: .5s;
+  }
+  .shi-tickets .ticket .price{
+    text-align: center;
+  }
+  .shi-tickets .ticket .info{
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .seanse-history-item .shi-info{
+    color:var(--text);
+    margin-left: 20px;
+    font-size: larger;
+  }
+  
+  .seanse-history-item .shi-info h4:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .profile-photo{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  }
+
+  form .form-control{
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+  }
+  form .form-control label{
+    margin-bottom: 5px;
+    color: var(--text);
+  }
+  form .form-control input{
+    height: auto;
+    min-height: 25px;
+    padding: 10px;
+    border: 1px solid grey;
+    background-color: var(--hover);
+    color: var(--text);
+  }
+  form .form-control input::placeholder{
+    color: var(--text);
+  }
+
+@media (max-width: 900px) {
+  nav {
+    height: auto;
+    min-height: 60px;
+    flex-wrap: wrap;
+    padding: 8px 14px;
+    gap: 6px;
+    background-color: #3a3a3a; 
+    z-index: 1000;
+  }
+  .logo {
+    height: 44px;
+    margin: 4px 0;
+  }
+  nav .nav-items {
+    order: 3;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 2px 8px;
+    padding: 2px 0 6px;
+  }
+  nav .nav-items li {
+    margin-right: 6px;
+  }
+  nav .nav-items li a {
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+  nav .userinfo {
+    gap: 6px;
+  }
+  nav .userinfo p {
+    display: none; 
+  }
+  nav .userinfo a {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
+  main {
+    padding-top: 110px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    padding: 6px 10px;
+    gap: 4px;
+  }
+  .logo {
+    height: 38px;
+  }
+  nav .nav-items li a {
+    font-size: 0.8rem;
+  }
+  main {
+    padding-top: 75px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding-top: 100px;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.5rem; }
+}
+.options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  align-items: flex-start;
+}
+
+.options .search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+.options .search input[type="date"] {
+  flex: 1;
+  height: 32px;
+  font-size: 15px;
+}
+
+.filter-genre-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.options .grouping {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-label {
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 600;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.button-filter {
+  width: auto !important;
+  min-width: fit-content !important;
+  height: 28px !important;
+  padding: 3px 10px !important;
+  font-size: 0.82rem !important;
+  line-height: 1;
+}
+
+/* Кнопка пошуку */
+.button-search {
+  width: auto !important;
+  height: 32px;
+  padding: 4px 14px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .options {
+    width: 98%;
+    gap: 10px;
+  }
+  .filter-genre-wrap {
+    width: 100% !important; 
+  }
+  .options .grouping {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-label {
+    font-size: 0.88rem;
+  }
+  .button-filter {
+    height: 30px !important;
+    padding: 4px 10px !important;
+    font-size: 0.8rem !important;
+  }
+  .options .search input[type="date"] {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  #seanses_grid {
+    width: 95%;
+    grid-template-columns: 48% 48%;
+    gap: 4%;
+  }
+}
+@media (max-width: 600px) {
+  #seanses_grid {
+    grid-template-columns: 100%;
+    gap: 10px;
+  }
+  #seanses_grid .film-card {
+    height: auto;
+    min-height: 130px;
+  }
+  #seanses_grid .film-card img {
+    width: 38%;
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 900px) {
+  #seanses_grid_by_time {
+    width: 95%;
+  }
+}
+
+@media (max-width: 900px) {
+  #film_info {
+    grid-template-columns: 28% 72%;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "poster info"
+      "seanses seanses"
+      "reviews reviews";
+    padding: 10px;
+  }
+}
+@media (max-width: 600px) {
+  #film_info {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "poster"
+      "info"
+      "seanses"
+      "reviews";
+    padding: 6px;
+  }
+  #film_info #poster {
+    justify-content: center;
+  }
+  #film_info #poster img {
+    width: 55%;
+    height: auto;
+  }
+  #film_info #seanses_on_film {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #film_info #reviews input {
+    width: 60%;
+  }
+  #film_info #reviews button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  #profile {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "info basket"
+      "achievements achievements"
+      "reviews reviews"
+      "history history";
+    padding: 10px;
+    gap: 8px;
+  }
+}
+@media (max-width: 700px) {
+  #profile {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "info"
+      "basket"
+      "achievements"
+      "reviews"
+      "history";
+    padding: 6px;
+    gap: 8px;
+  }
+  #profile #profile_basket > .row {
+    height: auto;
+    overflow-y: visible;
+    flex-wrap: wrap;
+  }
+
+  .basket-item {
+    width: 100%;
+    min-height: unset;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+  }
+  .basket-item * {
+    margin-bottom: 2px;
+  }
+  .basket-item button {
+    position: static;
+  }
+}
+
+@media (max-width: 900px) {
+  #ticket_sell {
+    width: 95%;
+  }
+  #choosed_tickets {
+    width: 44%;
+  }
+}
+@media (max-width: 700px) {
+  #ticket_sell > .row {
+    flex-direction: column;
+  }
+  #choosed_tickets {
+    width: 100%;
+    /* max-height: unset; */
+    margin-top: 16px;
+  }
+  #choosed_tickets > .row {
+    position: static;
+    width: 100%;
+  }
+  #hole_places {
+    height: auto;
+    min-height: 180px;
+  }
+  .hole-place {
+    width: 26px;
+    height: 28px;
+  }
+}
+@media (max-width: 400px) {
+  .hole-place {
+    width: 21px;
+    height: 24px;
+    font-size: 10px;
+    margin: 1px;
+  }
+}
+
+@media (max-width: 700px) {
+  .seanse-history-item {
+    flex-direction: column;
+    width: 100%;
+    margin: 6px;
+    padding: 8px;
+  }
+  .seanse-history-item .shi-tickets {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .shi-buttons {
+    position: static;
+    margin-top: 8px;
+    display: flex;
+    gap: 6px;
+  }
+  .seanse-history-item .shi-info {
+    margin-left: 0;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .achievement-user-item {
+    width: 100px;
+    height: 160px;
+    margin: 5px;
+    padding: 8px;
+  }
+  .achievement-user-item img {
+    height: 56px;
+    width: 56px;
+    margin: 8px 0;
+  }
+  .achievement-user-item p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .watched-film-item {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .review-item img {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  #profile_qr {
+    max-width: 100% !important;
+    padding: 0 6px;
+  }
+  #profile_qr img[alt="QR code"] {
+    width: min(260px, 80vw) !important;
+    height: min(260px, 80vw) !important;
+  }
+  #profile_qr h2 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .block-with-width80 {
+    width: 95%;
+  }
+}
+@media (max-width: 600px) {
+  .block {
+    margin: 5px 3px;
+    padding: 8px;
+  }
+
+  button:not(.button-filter):not(.button-search):not(.button-icon):not(.remove-btn) {
+    height: 38px;
+    font-size: 14px;
+  }
+  .button-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+
+.page-auth--login,
+.page-auth {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;    
+}
+@media (max-width: 480px) {
+  .page-auth--login,
+  .page-auth {
+    max-width: 100%;
+    border-radius: 0;
+    padding: 20px 18px;
+  }
+  .page-auth button,
+  .page-auth--login button {
+    width: 100%;
+  }
+}
+
+.ticket-buy-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  gap: 10px;
+  align-items: flex-start;
+}
+.ticket-buy-left {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.ticket-film-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  height: auto !important; 
+  min-height: 120px;
+}
+.ticket-film-img {
+  width: 120px;
+  min-width: 100px;
+  max-width: 140px;
+  height: auto;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.ticket-film-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.ticket-film-text p,
+.ticket-film-text h3 {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+.ticket-seats-grid {
+  height: auto !important;
+  min-height: 150px;
+  overflow-y: auto;
+}
+.ticket-cart {
+  width: 36%;
+  min-width: 200px;
+  max-height: 520px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.ticket-cart-footer {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  flex-shrink: 0;
+}
+#choosed_tickets_list {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (max-width: 800px) {
+  .ticket-buy-wrap {
+    flex-direction: column;
+    width: 98%;
+  }
+  .ticket-buy-left {
+    width: 100%;
+  }
+  .ticket-cart {
+    width: 100%;
+    min-width: unset;
+    max-height: 360px;
+    position: static;
+    margin-top: 10px;
+  }
+  .ticket-film-img {
+    width: 100px;
+    min-width: 80px;
+  }
+}
+@media (max-width: 480px) {
+  .ticket-film-info {
+    gap: 8px;
+  }
+  .ticket-film-img {
+    width: 80px;
+    min-width: 70px;
+  }
+  .ticket-film-text h3 {
+    font-size: 1rem;
+  }
+  .ticket-film-text p {
+    font-size: 0.85rem;
+  }
+  .ticket-seats-grid {
+    overflow-x: auto;
+  }
+}
+
+.basket-item > .row.j-c-end {
+  margin-top: auto;
+  justify-content: flex-end !important;
+  gap: 4px;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.basket-item > .row.j-c-end .button-icon {
+  position: static !important;
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+
+  #profile {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
+    padding: 4px;
+  }
+
+  #profile > div {
+    width: 100%;
+    margin: 4px 0;
+  }
+
+  #profile_basket > .row.j-c-start.flex-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px 0;
+    gap: 6px;
+  }
+
+  .basket-item {
+    width: 100% !important;
+    min-height: unset !important;
+    height: auto !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    padding: 8px 10px;
+    margin: 0 !important;
+    gap: 2px;
+    border-left: 3px solid #d4af37;
+    position: relative; 
+    box-sizing: border-box;
+  }
+
+
+  .basket-item > b {
+    font-size: 0.9rem;
+    display: block;
+    width: 100%;
+    margin-bottom: 2px;
+  }
+
+  .basket-item > p {
+    font-size: 0.82rem;
+    white-space: normal;
+    word-break: break-word;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+
+  .basket-item > .row.j-c-end {
+    margin-top: 6px;
+    justify-content: flex-end !important;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .basket-item > .row.j-c-end .button-icon {
+    position: static !important;
+    width: 32px !important;
+    height: 32px !important;
+    flex-shrink: 0;
+  }
+}
+
+.seanse-history-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  width: 95%;
+  padding: 12px;
+  margin: 8px auto;
+  background-color: var(--hover);
+  position: relative;
+  border-radius: 4px;
+}
+
+.seanse-history-item .shi-tickets {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 280px;
+  flex-shrink: 0;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.shi-tickets .ticket {
+  width: 130px;
+  flex-shrink: 0;
+}
+.seanse-history-item .shi-info {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.seanse-history-item .shi-info h4 {
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+@media (max-width: 700px) {
+  .seanse-history-item {
+    flex-direction: column;
+    width: 95%;
+    padding: 10px;
+    padding-top: 40px; 
+  }
+  .seanse-history-item .shi-tickets {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .shi-tickets .ticket {
+    width: calc(50% - 4px);  
+    min-width: 120px;
+  }
+  .seanse-history-item .shi-info {
+    width: 100%;
+    margin-left: 0;
+    font-size: 0.92rem;
+  }
+}
+
+div.row[style*="width:80%"] {
+  width: 90% !important;
+}
+
+@media (max-width: 700px) {
+  div.row[style*="width:80%"] {
+    flex-direction: column !important;
+    width: 98% !important;
+  }
+  #reviews_my,
+  #review_answers {
+    width: 100% !important;
+    min-width: 0;
+  }
+  .review-item {
+    padding: 8px;
+    overflow: hidden;
+  }
+  .review-item .info > .row {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+
+#choosed_tickets.ticket-cart {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;             /* важливо! */
+}
+
+/* Список квитків — скролиться всередині */
+#choosed_tickets_list {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 60px;
+  max-height: 75%;
+}
+
+.ticket-cart-footer {
+  flex-shrink: 0;
+  margin-top: 0;
+  padding-top: 8px;
+  border-top: 2px solid rgba(212, 175, 55, 0.4);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--hover);
+}
+
+@media (max-width: 800px) {
+  #choosed_tickets_list {
+    max-height: 220px;
+  }
+  .ticket-cart-footer {
+    padding: 8px 0 4px;
+  }
+  .ticket-cart-footer h4 {
+    font-size: 0.9rem;
+  }
+}
+
+.shi-history-wrap {
+  width: 70%;
+}
+
+.shi-card {
+  background: var(--hover);
+  border-radius: 6px;
+  padding: 14px 16px 12px;
+  margin: 8px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.shi-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* Інформація про фільм */
+.shi-film-info h4 {
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+.shi-film-info h4:hover { text-decoration: underline; }
+.shi-film-info p {
+  color: var(--text);
+  font-size: 0.88rem;
+  margin: 2px 0;
+  opacity: 0.85;
+}
+.shi-film-info p b { opacity: 1; }
+
+/* Кнопки (повернення, друк) */
+.shi-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.shi-tickets {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding-top: 8px;
+  /* border-top: 1px solid rgba(212, 175, 55, 0.25); */
+}
+
+.shi-ticket-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 10px;
+  background: #fff5d7;
+  border: 1.5px solid #d4af37;
+  border-radius: 5px;
+  min-width: 110px;
+}
+.chip-place {
+  font-size: 0.78rem;
+  color: #7c661c;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.chip-price {
+  font-size: 0.82rem;
+  color: #d4af37;
+  font-weight: 700;
+}
+
+/* ── Мобільна ≤ 900px ── */
+@media (max-width: 900px) {
+  .shi-history-wrap {
+    width: 95% !important;
+  }
+}
+
+/* ── Мобільна ≤ 600px ── */
+@media (max-width: 600px) {
+  .shi-card {
+    padding: 10px 12px 10px;
+    margin: 6px 0;
+  }
+  .shi-film-info h4 {
+    font-size: 0.95rem;
+  }
+  .shi-film-info p {
+    font-size: 0.82rem;
+  }
+  .shi-ticket-chip {
+    min-width: calc(50% - 4px);
+    padding: 5px 8px;
+  }
+  .chip-place { font-size: 0.76rem; }
+  .chip-price { font-size: 0.8rem; }
+}
+
+/* ── Мобільна ≤ 380px ── */
+@media (max-width: 380px) {
+  .shi-ticket-chip {
+    min-width: 100%;
+  }
+  .shi-header {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .shi-buttons {
+    align-self: flex-end;
+  }
+}

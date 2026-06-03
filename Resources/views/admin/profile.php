@@ -1,0 +1,1 @@
+<p style="color:var(--text)">Тип акаунта: <?=$role?></p>

@@ -1,0 +1,1030 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg: grey;
+  --hover: #4b4b4b75;
+  --clr1: orange;
+  --clr2: orangered;
+  --clr3: purple;
+  --text: whitesmoke;
+}
+html{
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--bg);
+  font-family: "Poppins", sans-serif;
+}
+.logo{
+  height: 60px;
+  /* margin-left: -20px; */
+  overflow: hidden;
+  margin: 10px;
+  cursor: pointer;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  margin-top: 0;
+  width: 100%;
+  background-color: rgba(75, 75, 75, 0.9);
+  color: var(--clr1);
+  height: 80px;
+  padding: 0 20px;
+  align-items: center;
+  z-index:1000;
+}
+nav .label {
+  font-size: 40px;
+}
+nav .label:hover {
+  cursor: pointer;
+}
+nav .auth,
+nav .userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+nav .userinfo p{
+  color:white;
+  margin-right: 10px;
+}
+nav .userinfo p:hover{
+  cursor: default;
+  text-decoration: underline;
+}
+nav .auth a,
+nav .userinfo a {
+  background-color: var(--clr1);
+  color: white;
+  text-decoration: none;
+  height: 25px;
+  padding: 5px;
+  margin: 5px;
+  /* border-radius: 5px; */
+}
+nav .auth a:hover,
+nav .userinfo a:hover {
+  background: var(--clr2);
+}
+nav .nav-items {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav .nav-items li {
+  margin-right: 1.5rem;
+  text-align: center;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: 0.7s ease;
+}
+nav .nav-items li a {
+  font-size: clamp(5rem 8vw 10rem);
+  color: white;
+  text-decoration: none;
+}
+nav .nav-items a.active {
+  font-weight: bolder;
+}
+nav .nav-items a:hover {
+  position: relative;
+  z-index: 1;
+  transform: scale(1.2);
+}
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+main {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  /* margin-top:40px; */
+  padding-top: 100px;
+}
+/* block */
+.block {
+  margin: 10px;
+  padding: 10px;
+  /* border-radius: 5px; */
+  background-color: var(--hover);
+
+  width: inherit;
+  height: inherit;
+}
+
+.block.not-visible {
+  box-shadow: none;
+  margin: 10px;
+  background-color: transparent;
+  padding: 0;
+}
+.block-with-width80 {
+  width: 80%;
+}
+
+/* filter, sort, search */
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  width: 80%;
+}
+
+.options h4 {
+  color: var(--text);
+}
+
+.options .search input {
+  height: 25px;
+  /* border-radius: 3px; */
+  border: 1px grey solid;
+  padding: 5px;
+}
+
+.options .filter {
+  flex-wrap: wrap;
+}
+
+.button-filter {
+width: fit-content;
+}
+.button.active{
+    background-color: var(--clr2);
+}
+
+/* buttons */
+
+button {
+  height: 30px;
+  width: 100%;
+  margin: 5px;
+  border: 0;
+  /* border-radius: 5px; */
+  background: var(--clr1);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.options button {
+  height: 25px;
+  margin: 8px 5px;
+  padding: 2px 4px;
+}
+button:hover {
+  background: var(--clr2);
+}
+button:active {
+  background: var(--clr1);
+}
+button:focus {
+  outline: none;
+}
+
+/* flex */
+.row,
+.column {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-wrap{
+  flex-wrap: wrap;
+}
+.row {
+  flex-direction: row;
+  height: -webkit-fill-available;
+}
+
+.column {
+  flex-direction: column;
+  width: -webkit-fill-available;
+}
+
+.j-c-start {
+  justify-content: flex-start;
+}
+
+.j-c-end {
+  justify-content: flex-end;
+}
+
+.j-c-center {
+  justify-content: center;
+}
+
+.j-c-around {
+  justify-content: space-around;
+}
+
+.j-c-evenly {
+  justify-content: space-evenly;
+}
+
+.a-c-center {
+  align-items: center;
+}
+
+.a-i-end {
+  align-items: flex-end;
+}
+
+/* other */
+.h-full {
+  height: 100%;
+}
+
+.h-half {
+  height: 50%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-half {
+  width: 50%;
+}
+.text-white {
+  color: var(--text);
+}
+.text-light{
+  /* color: lightgray; */
+  font-weight: lighter;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.text-bold{
+  /* color: lightgray; */
+  font-weight: bold;
+}
+.empty-data {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.empty-data h3 {
+  color: var(--text);
+}
+
+/* seanses */
+#seanses_grid {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 31% 31% 31%;
+  gap: 3.5%;
+  padding-top: 12.5px;
+  background: transparent;
+}
+#seanses_grid .film-card {
+  position: relative;
+  color: var(--text);
+  height: 200px;
+  /* border-radius: 10px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: var(--hover);
+}
+#seanses_grid .film-card .info {
+  width:80%;
+}
+#seanses_grid .film-card .button-detail {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 25px;
+  height: 25px;
+}
+#seanses_grid .film-card > div {
+  padding: 5px;
+  color: var(--text);
+}
+#seanses_grid .film-card img {
+  height: 100%;
+  width: 50%;
+
+  /* border-radius: 10px 0 0 10px; */
+}
+
+.seanses-grid{
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.seanse-item {
+  margin: 1px;
+  padding: 2.5px;
+  width: fit-content;
+  border: 1px solid var(--clr1);
+  background-color: var(--clr1);
+  color: #fff2e0;
+  /* background-color: #fff2e0; */
+  text-align: center;
+  /* color: var(--clr1); */
+  /* border-radius: 5px; */
+}
+.seanse-item.not-usable{
+  cursor:default;
+}
+.seanse-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  color: var(--text);
+  width: 100%;
+  height: 100%;
+}
+.seanse-item:hover {
+  cursor: pointer;
+  background-color: var(--clr2);
+  border-color:var(--clr2);
+}
+.seanse-item.not-usable:hover{
+  cursor:default;
+  border: 1px solid var(--clr1);
+  background-color: var(--clr1);
+}
+#seanses_grid_by_time{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  color: var(--text);
+}
+.seanse-card{
+  background-color: var(--hover);
+  height: fit-content;
+  padding: 10px;
+  position:relative;
+}
+.seanse-card .icon{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color:var(--clr1);
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+/* film */
+#film_info {
+  width: 100%;
+  min-height: 80vh;
+  height: auto;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 15% 45% 35%;
+  grid-template-areas:
+    "poster info reviews"
+    "seanses seanses reviews";
+  grid-gap: 10px;
+  padding: 20px;
+  color: var(--text);
+}
+#film_info #poster {
+  grid-area: poster;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#film_info #poster img {
+  height:-webkit-fill-available;
+  width: 100%;
+}
+#film_info #info {
+  grid-area: info;
+  padding: 10px;
+  background-color: var(--hover);
+}
+#film_info #info h4 {
+  font-size: 30px;
+}
+#film_info #info > * {
+  margin-bottom: 10px;
+}
+#film_info #seanses {
+  grid-area: seanses;
+  padding: 10px;
+}
+#film_info #seanses h4,
+#film_info #seanses h2 {
+  margin-bottom: 10px;
+}
+#film_info #seanses_on_film {
+  display: grid;
+  grid-template-columns: 19% 19% 19% 19% 19%;
+  gap: 10px;
+}
+#film_info .seanses-on-day {
+  background-color: var(--hover);
+  padding: 5px;
+}
+#film_info .seanses-on-day h4 {
+  text-align: center;
+}
+#film_info #reviews {
+  grid-area: reviews;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: transparent;
+}
+
+#film_info #reviews .rating{
+  margin-bottom: 10px;
+}
+#film_info #reviews input {
+  width: 30%;
+  background-color: gray;
+  margin: 0;
+}
+#film_info #reviews textarea {
+  width: 100%;
+  background-color: gray;
+  margin-bottom: 10px;
+  color: var(--text);
+  padding: 10px;
+  resize:vertical;
+}
+#film_info #reviews textarea::placeholder {
+  color: var(--text);
+}
+#film_info #reviews button {
+  width: 40%;
+  padding: 0 5px;
+}
+
+.review-item {
+  position: relative;
+  background: var(--hover);
+  padding: 10px;
+  color: var(--text);
+  margin: 10px;
+  
+  border: 2px solid var(--hover);
+}
+
+.review-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.review-item h4 {
+  margin-right: 5px;
+}
+.review-item .icon{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+.review-active{
+  border: 2px solid var(--clr1);
+}
+#answer{
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  /* background-color: var(--hover); */
+  padding: 10px;
+  color: var(--text);
+  margin-bottom: 10px;
+  border-left: 4px solid var(--hover);
+}
+#answer .icon{
+  position:absolute;
+  top: 10px;
+  right: 10px;
+  cursor:pointer;
+}
+#answer p{
+  margin-bottom: 10px;
+}
+#answer small{
+  margin-left: 10px;
+}
+.button-icon {
+  width: 25px;
+  height: 25px;
+}
+/* profile */
+#profile {
+  width: 100%;
+  min-height: 80vh;
+  height: auto;
+  display: grid;
+  grid-template-rows: 33% 34% 33%;
+  grid-template-columns: 35% 25% 40%;
+  grid-template-areas:
+    "info basket reviews"
+    "achievements achievements reviews"
+    "history history history";
+  grid-gap: 10px;
+  padding: 20px;
+  color: var(--text);
+}
+#profile #profile_basket {
+  grid-area: basket;
+  /* overflow-y: scroll; */
+  padding: 10px;
+  width: -webkit-fill-available;
+}
+
+#profile #profile_basket>.row{
+  overflow-y: scroll;
+  height:200px;
+  /* margin: 10px; */
+}
+#profile #profile_info {
+  grid-area: info;
+  width: -webkit-fill-available;
+  position:relative;
+}
+#profile #profile_reviews {
+  grid-area: reviews;
+  
+}
+#profile #profile_history {
+  grid-area: history;
+  height: fit-content;
+}
+#profile #profile_achievements {
+  grid-area: achievements;
+}
+
+#profile_info .img{
+  position:relative;
+  margin:10px;
+
+}
+
+#profile_info .img img{
+  position:relative;
+  margin: 0;
+
+}
+
+#profile_info .img button{
+  position:absolute;
+  margin: 0;
+  bottom:5px;
+  left:0px;
+  
+}
+/* ticket buy */
+#ticket_sell{
+  width:80%;
+  color:var(--text)
+}
+#ticket_sell_film_info{
+  height: 150px;
+  color: var(--text);
+  }
+  
+  #ticket_sell_film_info img{
+      margin-right: 10px;
+      height: 100%;
+  }
+  
+  #choosed_tickets{
+      color: var(--text);
+      position: relative;
+      max-height: 500px;
+      width: 30%;
+  
+  }
+  #choosed_tickets>.row{
+      position: absolute;
+      bottom:5px;
+      height: min-content;
+      justify-content: space-between;
+      width:90%;
+      
+  }
+
+  /* styles by chatGPT */
+  /* Контейнер з рядами */
+  #hole_places {
+      height: 300px;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      /* border-radius: 10px; */
+      justify-content: center;
+    }
+    
+    /* Рядок місць */
+    #hole_places .row {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+    
+    /* Приховуємо стандартний чекбокс */
+    #hole_places input[type="checkbox"] {
+      display: none;
+    }
+    
+    /* Створюємо кастомне місце */
+    #hole_places input[type="checkbox"] + label {
+      display: inline-block;
+      width: 25px;
+      height: 30px;
+      background: #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    /* Ховер ефект */
+    #hole_places input[type="checkbox"] + label:hover {
+      background: #b3b3b3;
+    }
+    
+    /* Обране місце */
+    #hole_places input[type="checkbox"]:checked + label {
+      background: orange;
+    }
+    
+    /* Зайняте місце */
+    #hole_places input[type="checkbox"]:disabled + label {
+      background: #ff4d4d;
+      cursor: not-allowed;
+    }
+    /* Блок кошика */
+  /* #choosed_tickets {
+      
+  } */
+  #choosed_tickets h3 {
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+  }
+  
+  #choosed_tickets h4 {
+      font-weight: normal;
+  }
+  /* Список квитків */
+  #choosed_tickets .ticket {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      padding-top: 5px;
+      /* align-items: center; */
+      border:2px solid #d4af37;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      width: 90%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position:relative;
+      background: #fff5d7;
+      transition: .5s;
+  }
+  #choosed_tickets_list{
+      height: 70%;
+      overflow-y: scroll;
+      justify-content: start;
+  }
+  .ticket .info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 80%;
+      font-size: 0.9rem;
+      color: #d4af37;
+      padding: 10px;
+  }
+  
+  .ticket .info span {
+      margin: 1px 0;
+  }
+  
+  .ticket .price {
+      border-top:2px dashed #d4af37;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 10px;
+      color: #d4af37;
+      
+  }
+  
+  /* Кнопка видалення квитка (хрестик) */
+  .ticket .remove-btn {
+      background: none;
+      position: absolute;
+      top:5px;
+      right:10px;
+      border: none;
+      color: #d4af37;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 10px;
+      width: fit-content;
+      font-weight: bold;
+      transition: .5s;
+  }
+  
+  .ticket .remove-btn:hover {
+      color: #7c661c;
+  }
+  
+  #hole_places{
+  /* overflow-y: scroll; */
+  height: 350px;
+  }
+  .hole-row{
+      height: min-content;
+  }
+  .hole-place{
+      height: 25px;
+      width: 20px;
+      background-color: grey;
+      margin: 2px 2px;
+      border-radius: 3px;
+      color:grey;
+      text-align: center;
+      align-content: center;
+      transition: 0.2s;;
+  }
+  .hole-place:hover{
+      color: white;
+      cursor:pointer;
+  }
+  
+  .hint{
+      color:var(--btn);
+  }
+  .hint:hover{
+      cursor:pointer;
+  }
+
+  
+  /* reviews */
+
+
+  #review_answers{
+    color:var(--text);
+    min-height: 150px;
+    height: fit-content;
+    
+  }
+
+  #reviews_my{
+    color:var(--text);
+    min-height: 150px;
+    height: fit-content;
+    
+  }
+
+  .empty-list{
+    /* center text in div */
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    color: lightgray;
+  }
+  
+  .empty-list p{
+
+    text-align: center;
+    
+  }
+  /* text */
+  .page-title{
+    color: var(--text);
+  }
+  .basket-item{
+    position:relative;
+    color: var(--text);
+    width: 120px;
+    min-height: 200px;
+    height: fit-content;
+    padding: 10px;
+    margin: 5px;
+    background: var(--hover);
+
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+
+  }
+  .basket-item *{
+    margin-bottom: 5px;
+  }
+  .basket-item button{
+    /* position: absolute; */
+    /* bottom: 3px; */
+    /* right: 3px; */
+    /* display: none; */
+  }
+  .basket-item button i{
+    margin:5px;
+  }
+  /* .basket-item:hover button{
+    display: block;
+  } */
+  .achievement-user-item{
+    color: var(--text);
+    width: 120px;
+    height: fit-content;
+    padding: 10px;
+    margin: 10px;
+    background: var(--hover);
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-start;
+    transition: 0.3s;
+    position:relative;
+    border-radius: 5px;
+  }
+  .achievement-user-item p{
+    font-size: medium;
+    text-align: center;
+  }
+  .achievement-user-item img{
+    height: 80px;
+    width: 80px;
+    margin:15px 0;
+    filter: grayscale(100%);
+  }
+  .achievement-user-item img.achieved {
+    filter: none; /* кольорове */
+  }
+  
+  .achievement-user-item img.in_progress {
+    /* filter: grayscale(1); ч/б */
+  }
+  
+  /* .achievement-user-item img.not_started {
+    filter: grayscale(1) opacity(0.5); блідий
+  } */
+  .achievement-user-item .info-icon{
+    position:absolute;
+    top:10px;
+    right:10px;
+    transition: .2s;
+  }
+  .achievement-user-item:hover .info-icon{
+    top:7px;
+  }
+  .achievement-user-item .info-icon:hover{
+    cursor:pointer;
+  }
+  .achievement-progress-bar{
+    width: 100%;
+    margin: 5px;
+    height: 5px;
+    border-radius: 3px;
+    background-color: whitesmoke;
+  }
+  .achievement-progress-bar-current{
+    background-color: limegreen;
+    height: 5px;
+    border-radius: 3px;
+  }
+
+  .watched-film-item{
+    margin:10px;
+    padding:10px;
+    background-color: var(--hover);
+    width: 200px;
+  }
+  .watched-film-item img{
+    width: 100%;
+  }
+  /* .watched-film-item h4{
+    
+  }
+  .watched-film-item p{
+    
+  }
+  .watched-film-item .achievements-list{
+    
+  } */
+
+  .seanse-history-item{
+    width: 95%;
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--hover) ;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+  }
+  .seanse-history-item .shi-tickets{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    
+  }
+  .shi-tickets h3 {
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+  }
+  
+  .shi-tickets h4 {
+      font-weight: normal;
+  }
+  /* Список квитків */
+  .shi-tickets .ticket {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      padding-top: 5px;
+      /* align-items: center; */
+      border:2px solid #d4af37;
+      border-radius: 5px;
+      width: 140px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position:relative;
+      background: #fff5d7;
+      transition: .5s;
+  }
+  .shi-tickets .ticket .price{
+    text-align: center;
+  }
+  .shi-tickets .ticket .info{
+    width: 100%;
+    justify-content: space-between;
+  }
+  .shi-buttons{
+    position: absolute;
+    top:5px;
+    right:10px;
+  }
+  
+  .seanse-history-item .shi-info{
+    color:var(--text);
+    margin-left: 20px;
+    font-size: larger;
+  }
+  
+  .seanse-history-item .shi-info h4:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .profile-photo{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  }
+
+  form .form-control{
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+  }
+  form .form-control label{
+    margin-bottom: 5px;
+    color: var(--text);
+  }
+  form .form-control input{
+    height: auto;
+    min-height: 25px;
+    padding: 10px;
+    border: 1px solid grey;
+    background-color: var(--hover);
+    color: var(--text);
+  }
+  form .form-control input::placeholder{
+    color: var(--text);
+  }

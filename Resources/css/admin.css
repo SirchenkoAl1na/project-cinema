@@ -1,0 +1,1300 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* стилы для адмін-панелі кінотеатру*/
+:root {
+    --border-color: black;
+    /* --btn:#FCBE6A; */
+    --btn:rgb(173, 173, 173);
+    /* --text: #8d8881; */
+    --text: rgb(128, 128, 128);
+    --bg: whitesmoke;
+
+    /* colors */
+    --green: #4CAF50;
+    /* green */
+    --blue: #008CBA;
+    /* blue */
+    --red: #f44336;
+    /* red */
+    --yellow: #ffeb3b;
+    /* yellow */
+    --orange: #ff9800;
+    /* orange */
+    --purple: #9c27b0;
+    /* purple */
+    --pink: #e91e63;
+    /* pink */
+--radius:5px;
+    --shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    color: var(--bg);
+}
+
+.sidebar {
+    background-color: var(--btn);
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0; /* Гарантує що сайдбар не вилазить за низ екрану на мобільному */
+    height: 100%; /* Замість 100vh, що конфліктує з мобільними браузерами */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* footer не виходить за межі */
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    padding: 20px 20px 20px 20px;
+    background: var(--text);
+    display: flex;
+    align-items: center;
+}
+
+.header h2 {
+    justify-self: center;
+font-size: 20px;
+
+}
+
+.sidebar nav {
+    flex: 1;          /* займає весь простір між header і footer */
+    min-height: 0;    /* КРИТИЧНО для flexbox — дозволяє меню стискатись */
+    overflow-y: auto; /* тільки меню прокручується — footer завжди видно */
+    overflow-x: hidden;
+}
+
+.sidebar ul {
+    margin: 20px 0;
+}
+
+.sidebar ul li {
+    list-style: none;
+    padding-left: 30px;
+    transition: .5s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.sidebar ul li:hover{
+    cursor:pointer;
+}
+
+.sidebar ul li a {
+    margin-left: 10px;
+    line-height: 3;
+    color: var(--bg);
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.sidebar ul li:hover {
+    background-color: var(--text);
+    /* text-decoration: underline; */
+}
+
+.sidebar .footer {
+    /* position: absolute замінено на нормальний flex-елемент —
+       тепер footer завжди видимий і не обрізається на мобільних */
+    position: relative;
+    width: 100%;
+    height: 70px;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--text);
+    color: var(--bg);
+    flex-shrink: 0; /* Не дає footer стискатися */
+    margin-top: auto; /* Прилипає до низу сайдбара */
+}
+
+.sidebar .footer a {
+    color: var(--bg);
+    text-decoration: none;
+}
+
+main {
+    margin-left: 250px;
+    padding: 30px;
+    flex: 1;
+}
+
+/* block */
+.block {
+    box-shadow: var(--shadow);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+
+    width: inherit;
+    height: inherit;
+}
+
+.block.not-visible {
+    box-shadow: none;
+    margin: 10px;
+    padding: 0;
+}
+
+/* filter, sort, search */
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+}
+
+.options h4 {
+    color: var(--text);
+}
+
+.options .search {}
+
+.options .search input {
+    height: 25px;
+    border-radius: 3px;
+    border: 1px grey solid;
+    padding: 5px;
+}
+
+.options .filter {
+    flex-wrap: wrap;
+}
+
+.options .sort {}
+
+.button-filter {
+width: fit-content;
+}
+
+.button-search {
+    
+}
+
+.button-sort {}
+
+.button-sort i{
+    margin-left: 3px;
+}
+.button.active{
+    background-color: rgb(133, 133, 133);
+}
+/* table */
+
+/* buttons */
+.button {
+    background-color: var(--btn);
+    color: var(--bg);
+    height: 25px;
+    border: none;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 3px;
+}
+
+.film-card .button-detail {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+    color:var(--orange);
+  }
+.button-chenge-theme {
+    background-color: transparent;
+}
+
+.sale-status{
+    border-radius:3px;
+    padding: 2px 6px;
+    
+  }
+  .sale-status-cashier{
+    color:var(--orange);
+    background:lightgoldenrodyellow;
+  }
+  .sale-status-user{
+    color:green;
+    background-color: lightcyan;
+  }
+.button-icon {
+    width: 25px;
+}
+
+.button-not-visible {
+    background-color: transparent;
+    color: transparent;
+    transition: .3s;
+}
+
+.button-not-visible:hover {
+    color: var(--text) !important;
+}
+
+.button:hover {
+    opacity: 0.8;
+    color: var(--bg);
+    cursor: pointer;
+}
+
+.button-add {
+    background-color: var(--green);
+    color: var(--bg);
+}
+
+.button-show {
+    background-color: var(--orange);
+    color: var(--bg);
+}
+
+.button-edit {
+    background-color: var(--blue);
+    color: var(--bg);
+}
+
+.button-hide {
+    background-color: var(--red);
+    color: var(--bg);
+}
+
+.button-other {
+    background-color: var(--pink);
+    color: var(--bg);
+}
+.button-save{
+    background-color: var(--green);
+    color: var(--bg);
+}
+
+/* icons&images */
+ion-icon {
+    font-size: 20px;
+    color: var(--bg);
+    margin-right: 10px;
+}
+
+/* text */
+h1 {
+    margin-top: 20px;
+    text-align: center;
+    justify-self: center;
+    color: var(--text);
+}
+.text-bold{
+    font-weight: bold;
+}
+.text-grey{
+    color:var(--text);
+}
+/* flex */
+.row,
+.column {
+    display: flex;
+    justify-content: space-between;
+}
+
+.row {
+    flex-direction: row;
+    height: -webkit-fill-available;
+}
+
+.column {
+    flex-direction: column;
+    width: -webkit-fill-available;
+}
+
+.j-c-start {
+    justify-content: flex-start;
+}
+
+.j-c-end {
+    justify-content: flex-end;
+}
+
+.j-c-center {
+    justify-content: center;
+}
+
+.j-c-around {
+    justify-content: space-around;
+}
+
+.j-c-evenly {
+    justify-content: space-evenly;
+}
+
+.a-c-center {
+    align-items: center;
+}
+
+.a-i-end {
+    align-items: flex-end;
+}
+
+/* other */
+.h-full {
+    height: 100%;
+}
+
+.h-half {
+    height: 50%;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.w-half {
+    width: 50%;
+}
+
+.empty-data {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.empty-data h3 {
+    color: var(--text);
+}
+
+.hidden{
+  display: none;
+}
+/* form */
+form {
+    width: 100%;
+    
+    margin: 10px;
+    padding: 10px;
+}
+
+.form-control {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: 5px;
+    color: var(--text);
+}
+form label{
+    color: var(--text);
+    padding-bottom: 5px;
+}
+form input,
+form textarea,
+form select {
+    height: 25px;
+}
+form textarea {
+    min-height: 100px;
+}
+form .button{
+    margin:10px;
+}
+
+/* achievements */
+.achievement-item {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+    color: var(--text);
+    padding: 5px;
+    height: 80px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.achievement-item img {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.achievement-item .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.achievement-item .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* films */
+#films_grid {
+    display: grid;
+    grid-template-columns: 31% 31% 31%;
+    gap: 3.5%;
+    padding-top: 12.5px;
+}
+
+#films_grid .film-card {
+    position: relative;
+    width: 100%;
+    padding-top: 150%;
+    /* Співвідношення сторін 2:3 (наприклад, 300px на 450px) */
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#films_grid .film-card .info {
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    height: 58px;
+    /* change heigth slow*/
+    transition: .5s ease-in-out;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#films_grid .film-card:hover .info{
+    /* how slow change heigth but with fit-content? */
+    height: fit-content;
+    transition: .5s ease-in-out;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.film-card .info h4,
+.film-card .info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+/* employee */
+#employee_table {
+    width: 100%;
+    color: var(--text);
+    border-collapse: collapse;
+}
+
+#employee_table tr {}
+
+#employee_table th,
+#employee_table td {
+    text-align: center;
+    border: 1px solid var(--text);
+    padding: 0px 5px;
+}
+
+/* seanses */
+#seanses_grid{
+    display: grid;
+    grid-template-columns:31% 31% 31%;
+    gap: 3.5%;
+    padding-top: 12.5px;
+}
+#seanses_grid .film-card{
+color: var(--text);
+height: 200px;
+position: relative;
+box-shadow: var(--shadow);
+border-radius: 10px;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+
+#seanses_grid .film-card .info{
+    
+    
+    }
+    
+#seanses_grid .film-card>div{
+    padding: 5px;
+    color: var(--text)
+    
+    }
+#seanses_grid .film-card img{
+height: 100%;
+width: 50%;
+    
+border-radius: 10px 0 0 10px;
+    }
+#seanses_grid .seanses-grid{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+/* grid-template-columns: auto auto auto; */
+}
+
+#seanses_grid .seanse-item{
+margin:5px;
+padding: 5px;
+width: fit-content;
+border:1px solid var(--btn);
+background-color: #fff2e0;
+text-align: center;
+color: var(--btn);
+border-radius: 5px;
+}
+
+.seanse-item-not-removed{ 
+    cursor:no-drop;
+  }
+  .seanse-item-not-removed:hover a{ 
+      cursor:no-drop;
+    }
+#seanses_grid .seanse-item a{
+    color:var(--btn);
+    text-decoration: none;
+}
+#seanses_grid .seanse-item:hover{
+    cursor:default;
+    opacity: .7;
+}
+
+#seanses_grid_by_time{
+    display: flex;
+    flex-direction: column;
+    color: var(--text);
+}
+#seanses_grid_by_time h4{
+    margin-top:20px;
+}
+
+.seanses-grid{
+    padding: 10px;
+    display: grid;
+    grid-template-columns:25% 25% 25% 25%;
+    gap: 10px;
+}
+.seanse-card{
+    border-radius: 3px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+    padding: 10px;
+    position:relative;
+}
+.seanse-card .icon{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color:var(--orange);
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+/* holes */
+#holes_grid {
+    display: grid;
+    grid-template-columns: 31% 31% 31%;
+    gap: 3.5%;
+    padding-top: 12.5px;
+}
+
+.hole-card {
+    min-height: 200px;
+    height: fit-content;
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    color: var(--text);
+    padding: 10px;
+}
+
+.hole-card .head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    width: 100%;
+    padding-top: 0;
+}
+
+.hole-card .buttons {
+    display: row;
+    flex-direction: row;
+}
+.hole-card ul{
+    list-style: none;
+    margin-left: 20px;
+}
+/* reviews */
+#reviews_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-item {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    color: var(--text);
+}
+
+.review-item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.review-item h4 {
+    margin-right: 5px;
+}
+
+.h-auto {
+    height: auto;
+}
+/* error */
+pre.error{
+    position:absolute;
+    color:white;
+    background-color: rgba(255, 0, 0, 0.493);
+    border-radius: 15px;
+    width: 70%;
+    right: 0;
+    top: 0;
+    margin:20px;
+    padding:10px;
+    z-index: 1004;
+}
+#ticket_history{
+    border-collapse: collapse;
+    color: var(--text);
+    width: 100%;
+    margin-top: 10px;
+}
+#ticket_history th{
+    padding:3px;
+}
+#ticket_history th,
+#ticket_history td{
+    border: #333 solid 1px;
+    text-align: center;
+}
+
+p.msg {
+    margin: 5px 0;
+    color: red;
+    font-size: 14px;
+    font-weight: bolder;
+    /* padding: 5px; */
+    width: 100%;
+    /* margin: 8px 0 5px 0; */
+    /* border:1px solid red; */
+    /* border-radius: 5px; */
+    /* background-color: #ffdddd; */
+  }
+/* ticket buy */
+
+#film_info{
+height: 150px;
+color: var(--text);
+}
+
+#film_info img{
+    margin-right: 10px;
+    height: 100%;
+}
+
+#client_info{
+    /* width: 40%; */
+}
+#choosed_tickets{
+    /* width: 40%; */
+    height: -webkit-fill-available;
+    color: var(--text);
+    position: relative;
+    max-height: 470px;
+
+}
+#choosed_tickets>.row{
+    position: absolute;
+    bottom:5px;
+    height: min-content;
+    justify-content: space-between;
+    width:90%;
+    
+}
+
+/* #hole_places{
+}
+
+#hole_places input{
+    margin:5px;
+    width: 20px;
+    height: 20px;
+} */
+
+/* styles by chatGPT */
+/* Контейнер з рядами */
+#hole_places {
+    height: -webkit-fill-available;
+    min-height: 550px;
+    overflow-y: scroll;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-radius: 10px;
+    justify-content: center;
+  }
+  
+  /* Рядок місць */
+  #hole_places .row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    height: fit-content;
+  }
+  
+  /* Приховуємо стандартний чекбокс */
+  #hole_places input[type="checkbox"] {
+    display: none;
+  }
+  
+  /* Створюємо кастомне місце */
+  #hole_places input[type="checkbox"] + label {
+    display: inline-block;
+    width: 25px;
+    height: 30px;
+    background: #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  /* Ховер ефект */
+  #hole_places input[type="checkbox"] + label:hover {
+    background: #b3b3b3;
+  }
+  
+  /* Обране місце */
+  #hole_places input[type="checkbox"]:checked + label {
+    background: orange;
+  }
+  
+  /* Зайняте місце */
+  #hole_places input[type="checkbox"]:disabled + label {
+    background: #ff4d4d;
+    cursor: not-allowed;
+  }
+  /* Блок кошика */
+/* #choosed_tickets {
+    
+} */
+#choosed_tickets h3 {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+#choosed_tickets h4 {
+    font-weight: normal;
+}
+/* Список квитків */
+#choosed_tickets .ticket {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-top: 5px;
+    /* align-items: center; */
+    border:2px solid #d4af37;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 90%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position:relative;
+    background: #fff5d7;
+    transition: .5s;
+}
+#choosed_tickets_list{
+    height: 70%;
+    overflow-y: scroll;
+    justify-content: start;
+}
+.ticket .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    font-size: 0.9rem;
+    color: var(--text);
+    padding: 10px;
+}
+
+.ticket .info span {
+    margin: 1px 0;
+}
+
+.ticket .price {
+    border-top:2px dashed #d4af37;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px;
+    color: #d4af37;
+    
+}
+
+/* Кнопка видалення квитка (хрестик) */
+.ticket .remove-btn {
+    background: none;
+    position: absolute;
+    top:5px;
+    right:10px;
+    border: none;
+    color: #d4af37;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: .5s;
+}
+
+.ticket .remove-btn:hover {
+    color: #7c661c;
+}
+
+.hole-row{
+    height: min-content;
+}
+.hole-place{
+    height: 25px;
+    width: 20px;
+    background-color: grey;
+    margin: 2px 2px;
+    border-radius: 3px;
+    color:grey;
+    text-align: center;
+    align-content: center;
+    transition: 0.2s;;
+}
+.hole-place:hover{
+    color: white;
+    cursor:pointer;
+}
+
+.hint{
+    color:var(--btn);
+}
+.hint:hover{
+    cursor:pointer;
+}
+.employer-info p{
+    margin:5px 0;
+}
+
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 2000;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    transition: background .2s;
+}
+.sidebar-toggle:hover {
+    background: #555;
+    opacity: 1;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1500;
+}
+.sidebar-overlay.active {
+    display: block;
+}
+
+@media (max-width: 900px) {
+
+    .sidebar-toggle {
+        display: flex;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1600;
+        width: 250px;
+    }
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar .header {
+        padding-left: 56px; 
+        display: flex;
+        align-items: center;
+    }
+    .sidebar .header h2 {
+        font-size: 15px;
+        line-height: 1.2;
+    }
+
+    main {
+        margin-left: 0;
+        padding: 64px 14px 20px;
+    }
+
+
+    #employee_table,
+    #ticket_history {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    #films_grid,
+    #seanses_grid,
+    #holes_grid {
+        grid-template-columns: 48% 48%;
+        gap: 4%;
+    }
+
+    .seanses-grid {
+        grid-template-columns: 48% 48%;
+    }
+
+    .options {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    .options .filter {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    .button-filter {
+        width: auto !important;
+        min-width: fit-content !important;
+    }
+
+    form {
+        margin: 6px;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    #films_grid,
+    #seanses_grid,
+    #holes_grid {
+        grid-template-columns: 100%;
+        gap: 10px;
+    }
+
+    .seanses-grid {
+        grid-template-columns: 100%;
+    }
+
+    #seanses_grid .film-card {
+        height: auto;
+        min-height: 120px;
+    }
+    #seanses_grid .film-card img {
+        width: 36%;
+    }
+
+    .hole-card {
+        min-height: auto;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+        margin-top: 6px;
+    }
+
+    #choosed_tickets {
+        width: 100%;
+        max-height: unset;
+        margin-top: 12px;
+    }
+    #choosed_tickets > .row {
+        position: static;
+        width: 100%;
+    }
+    #hole_places {
+        height: auto;
+    }
+    .hole-place {
+        width: 22px;
+        height: 26px;
+    }
+
+    form input,
+    form select,
+    form textarea {
+        font-size: 16px; 
+    }
+    form input,
+    form select {
+        height: 40px;
+    }
+
+    .button {
+        height: 34px;
+        padding: 4px 10px;
+        font-size: 13px;
+    }
+    .button.button-icon {
+        height: 30px;
+        width: 30px;
+        padding: 2px;
+    }
+
+    pre.error {
+        width: 90%;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 10px;
+        font-size: 11px;
+    }
+
+    .achievement-item {
+        flex-wrap: wrap;
+        height: auto;
+    }
+}
+
+#chart1 {
+    min-height: 300px;
+    width: 65%;
+    flex-shrink: 0;
+}
+#chart2 {
+    min-height: 300px;
+    width: 35%;
+    flex-shrink: 0;
+}
+
+.text-grey > .row:first-child {
+    flex-wrap: wrap;
+}
+.text-grey > .row:first-child > .block {
+    min-width: 180px;
+    flex: 1 1 180px;
+}
+
+.text-grey > .row {
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.text-grey > .row > .block {
+    margin: 0; 
+}
+.text-grey > .row + .row {
+    align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+    #chart1 {
+        width: 100% !important;
+        min-height: 260px;
+    }
+    #chart2 {
+        width: 100% !important;
+        min-height: 260px;
+    }
+    .text-grey > .row + .row {
+        flex-direction: column;
+    }
+    .text-grey > .row:first-child > .block {
+        min-width: 140px;
+        flex: 1 1 140px;
+    }
+}
+
+@media (max-width: 600px) {
+    #chart1, #chart2 {
+        min-height: 220px;
+    }
+    .text-grey > .row:first-child > .block {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+}
+
+#reader {
+    width: 100% !important;
+    max-width: 600px;
+    border: none !important;
+}
+#reader video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+}
+
+#seanses_grid .film-card img {
+    height: 100%;
+    width: 40%;
+    object-fit: cover; 
+    flex-shrink: 0;
+}
+#seanses_grid .film-card .info {
+    flex: 1;
+    min-width: 0; 
+    word-break: break-word;
+}
+
+.options {
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.options .filter, .options .grouping {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+main {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.block {
+    max-width: 100%;
+    overflow-wrap: break-word; 
+}
+
+@media (max-width: 900px) {
+    #employee_table,
+    #ticket_history,
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+
+#film_show{
+    width: 100%;
+    height: fit-content;
+    background-color: var(--hover);
+    padding: 10px;
+    color:  gray;
+    box-shadow: var(--shadow);
+    margin-bottom:15px;
+  }
+  #film_show #poster img{
+    width: 150px;
+    height: 220px;
+    margin-right: 10px;
+  }
+  #film_show #info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+        
+  #seanses_on_film{
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 12.5px;
+
+  }
+  #seanses_on_film .seanses-on-day{
+    border-radius: 5px;
+    border:1px solid grey;
+    padding: 10px;
+    color: var(--text);
+  }
+  #seanses_on_film .seanses-grid{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
+  }
+  #seanses_on_film .seanse-item{
+    margin:5px;
+    padding: 5px;
+    width: fit-content;
+    cursor:pointer;
+    border:1px solid var(--btn);
+    background-color: #fff2e0;
+    text-align: center;
+    color: var(--btn);
+    border-radius: 5px;
+  }
+.tickets-seanse-info{
+    height:150px;
+    box-shadow: var(--shadow);
+    width: 90%;
+    border-radius: 5px;
+    margin:10px;
+    padding:10px;
+    color:var(--text);
+
+}
+  .ticket-item{
+    height:150px;
+    box-shadow: var(--shadow);
+    width: 120px;
+    border-radius: 5px;
+    margin:10px;
+    padding:10px;
+    color:var(--text);
+
+    position: relative;
+  }
+
+  .ticket-item button{
+    position: absolute;
+    bottom:5px;
+    right: 5px;
+  }
