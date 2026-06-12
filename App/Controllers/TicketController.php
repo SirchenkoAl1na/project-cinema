@@ -125,19 +125,19 @@ class TicketController extends Controller
         ]);
     }
 
-    public function ticketreturn(?array $param = null){
+    public function ticketreturn(?array $params = null){
         $id= $param['id'] ?? null;
-        if(!is_null($id)){
-            //delete tickets
-            Ticket::delete("sale_id=".$id);
-            //delete sale
-            Sale::delete("id=".$id);
-            //remove achievement
-            //todo later
-            Router::redirect('/profile/films/history');
-        }
-        else{
-            echo "ERROR: Не вказано id квитка";
+
+        if (is_null($id)) {
+            Router::redirect('/profile');
+        } else {
+            $ticket = new Ticket($ticket_id);
+            if ($ticket->sale->user_id != null) {
+                $user = $ticket->sale->user;
+                UserService::removeAchievement('buy_ticket');
+            }
+            TicketService::returnTicket($ticket_id);
+            Router::redirect('/profile');
         }
     }
 
@@ -159,12 +159,8 @@ class TicketController extends Controller
     public function APIbuytickets(array|string $data)
     {
         try {
-            $res=null;
-            if(isset($data['user_id'])) {
-                $res = SaleService::buyTickets($data,$data['user_id']);
+            $res = SaleService::buyTickets($data,$data['user_id']??null);
 
-            }
-            $res = SaleService::buyTickets($data);
             echo json_encode([
                 'status' => 1,
                 'message' => $res,
@@ -249,7 +245,7 @@ class TicketController extends Controller
     {
         $ticket_id = $params['id'] ?? null;
         if (is_null($ticket_id)) {
-            Router::redirect('/cahsier');
+            Router::redirect('/cashier');
         } else {
             $ticket = new Ticket($ticket_id);
             if ($ticket->sale->user_id != null) {

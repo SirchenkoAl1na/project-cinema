@@ -3,7 +3,7 @@
     <div id="ticket_sell_film_info" class="block row">
         <img src="/Resources/img/film_posters/<?= $film->poster ?>" alt="<?= $film->poster ?>">
         <div class="column j-c-start">
-            <h3><?= $film->title ?></h3>
+            <h3 onclick="location.href='/profile/film?id=<?=$film->id?>'" class="link"><?= $film->title ?></h3>
             <p><b>Жанри: </b> <?= !empty($film->genres) ? $film->genres : ' - ' ?> </p>
             <p><b>Опис: </b> <?= !empty($film->description) ? '<i>'.$film->description.'</i>' : ' - ' ?> </p>   
             <p><b>Зал: </b><?= !is_null($hole) ? $hole->nomer : '' ?></p>    
@@ -152,7 +152,7 @@ let maxDiscount=<?=$user->discount?>;
         //IF OKEY ALERT MESSAGE
         if(res!=false) {
             alert("Квитки успішно заброньовано");
-            // window.location.reload();
+            window.location.reload();
             location.href='/profile';
         }
 

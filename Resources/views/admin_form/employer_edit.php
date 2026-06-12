@@ -63,5 +63,5 @@ Form::Build([
     //         'label' => 'Розклад',
     //     ],
     // ],
-], '/admin/employee/update?id='.$employer->id,
+], '/admin/employee/update?id='.$employer->user_id,
     'Оновити');

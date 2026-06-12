@@ -57,7 +57,7 @@ foreach ($tickets as $ticket) {
     <td>
     <button class="button button-icon button-show" onclick="generatePDF('<?= $ticket->sale->seanse->film->title ?>','<?= \App\Data::dateFormat($ticket->sale->seanse->date) ?>','<?= $ticket->sale->seanse->time ?>','<?= $ticket->sale->seanse->hole->nomer ?>','<?= $ticket->place->row ?>','<?= $ticket->place->place ?>','<?= $ticket->price ?>','<?= $ticket->ticket_kod ?>','<?= $ticket->qr_token ?>')" title="Друк"><i class="fa-solid fa-print"></i></button>
     <?php 
-    if(!is_null($ticket->sale->employer_id)||$ticket->sale->user_id == null){
+    if(!is_null($ticket->sale->employer_id)){
     ?>
     <button class="button button-icon button-other" onclick="returnTicket(<?= $ticket->id; ?>)" title="Повернення квитка"><i class="fa-solid fa-rotate-left"></i></button>
     <?php 

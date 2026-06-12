@@ -85,7 +85,8 @@ class EmployerController extends Controller
     public function editbyadmin($param)
     {
         $id=$param['id'];
-        $employer=new Employer($id);
+        $user=new User($id);
+        $employer=$user->Employer($id);
         self::render('Редагування працівника', '/admin_form/employer_edit', 'admin',[
             'employer'=>$employer
         ]);

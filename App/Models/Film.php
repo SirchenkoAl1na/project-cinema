@@ -54,7 +54,7 @@ class Film extends Model
           $this->actors=is_array($cast)?$cast:explode(',',$cast);
      } 
      public function reviews(){
-          return Review::where('film_id='.$this->id);
+          return Review::where('film_id='.$this->id.' AND is_blocked=false');
      }
 
      public static function genresList(){

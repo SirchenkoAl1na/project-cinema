@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Form;
@@ -60,20 +61,20 @@ Form::Build([
             'type' => 'text',
         ],
         [
-            'field_type' => 'input',
-            'name' => 'duration',
-            'label' => 'Тривалість (хвилини)',
-            'type' => 'number',
-            'attr' => " min='0' required max='360'",
+            'field_type' => 'selectmultiple',
+            'name' => 'genre',
+            'label' => 'Жанри',
+            'attr' => "class='select2' multiple='multiple'",
+            'options' => $genres,
         ]
     ],
     [
         [
             'field_type' => 'input',
-            'name' => 'genre',
-            'label' => 'Жанри',
-            'type' => 'text',
-            'attr' => "placeholder='Введіть через кому'",
+            'name' => 'duration',
+            'label' => 'Тривалість (хвилини)',
+            'type' => 'number',
+            'attr' => " min='0' required max='360'",
         ],
         [
             'field_type' => 'input',

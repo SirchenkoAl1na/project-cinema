@@ -67,6 +67,9 @@ class Sale extends Model
         if(strtotime($this->date)>=strtotime($current_date)) return false;
         return true;
     }
-
+    public function getAchievements(){
+        //TODO
+        return [];
+    }
 
 }

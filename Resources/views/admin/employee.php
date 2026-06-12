@@ -62,8 +62,8 @@ if (!isset($employee) || empty($employee)) {
                             <?php 
                             if($employer->posada!="адміністратор"){
                             ?>
-                            <button class="button button-icon button-other" onclick="location.href='/admin/employee/new-password?id=<?= $employer->id  ?>'" title="Змінити пароль"><i class="fa-solid fa-unlock-keyhole"></i></button>
-                            <button class="button button-icon button-edit" onclick="location.href='/admin/employee/edit?id=<?= $employer->id  ?>'" title="Редагувати"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="button button-icon button-other" onclick="location.href='/admin/employee/new-password?id=<?= $employer->user_id  ?>'" title="Змінити пароль"><i class="fa-solid fa-unlock-keyhole"></i></button>
+                            <button class="button button-icon button-edit" onclick="location.href='/admin/employee/edit?id=<?= $employer->user_id  ?>'" title="Редагувати"><i class="fa-solid fa-pen-to-square"></i></button>
                             <?php 
                             }
                             ?>

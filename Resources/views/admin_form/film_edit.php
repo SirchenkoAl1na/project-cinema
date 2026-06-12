@@ -1,7 +1,7 @@
+
 <?php
 
 use App\Form;
-
 Form::Build([
     [
         '<i style="color:var(--text);">Зірочкою * відмічені обов`язкові поля, які треба додати в першу чергу</i>'
@@ -61,20 +61,21 @@ Form::Build([
             'attr' => "placeholder='Введіть опис фільму' value='".$film->description."'",
         ],
         [
-            'field_type' => 'input',
-            'name' => 'duration',
-            'label' => 'Тривалість (хвилини)',
-            'type' => 'number',
-            'attr' => "value='".$film->duration."' min='0' required max='360'",
+            'field_type' => 'selectmultiple',
+            'name' => 'genre',
+            'label' => 'Жанри',
+            'attr' => "class='select2' multiple='multiple'",
+            'options' => $genres,
+            'values'=>explode(', ',$film->genres),
         ]
     ],
     [
         [
             'field_type' => 'input',
-            'name' => 'genre',
-            'label' => 'Жанри',
-            'type' => 'text',
-            'attr' => "placeholder='Введіть через кому' value='".$film->genres."'",
+            'name' => 'duration',
+            'label' => 'Тривалість (хвилини)',
+            'type' => 'number',
+            'attr' => "value='".$film->duration."' min='0' required max='360'",
         ],
         [
             'field_type' => 'input',

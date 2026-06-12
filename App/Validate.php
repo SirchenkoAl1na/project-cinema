@@ -71,6 +71,7 @@ class Validate
         $login = $array['login'];
         $password = $array['password'];
         $password_confirm = $array['password_confirm'];
+        $phone = $array['phone'];
         $email = $array['email'];
 
         if (empty($login) && empty($email) && empty($password) && empty($password_confirm)) {
@@ -94,12 +95,22 @@ class Validate
             $_SESSION['not_valid']['password'] = true;
             $is_valid = false;
         }
+        if (empty($password)) {
+            $_SESSION['message']['password'] = 'Введіть пароль';
+            $_SESSION['not_valid']['password'] = true;
+            $is_valid = false;
+        }
         if (empty($password_confirm)) {
             $_SESSION['message']['password_confirm'] = 'Введіть підвтердження пароля';
             $_SESSION['not_valid']['password_confirm'] = true;
             $is_valid = false;
         }
 
+        if(strlen($phone) != 10||!is_numeric($phone)){
+            $_SESSION['message']['phone'] = 'Телефон має містити тільки цифри (рівно 10)';
+            $_SESSION['not_valid']['phone'] = true;
+            $is_valid = false;
+        }
         if (strlen($password) < 6) {
             $_SESSION['message']['password'] = 'Пароль повинен містити не менше 6 символів';
             $_SESSION['not_valid']['password'] = true;

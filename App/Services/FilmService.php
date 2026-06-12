@@ -36,7 +36,7 @@ class FilmService
             'poster' => $poster, // збережеться filename
             'primiere_date' => $primiere_date,
             'description' => json_encode([
-                'genres' => $genre,
+                'genres' => implode(', ',$genre),
                 'cast' => $actors,
                 'director' => $director,
                 'description' => $description,
@@ -78,7 +78,7 @@ class FilmService
             'end_date'=>$end_date,
             'duration'=>$duration,
             'description' => json_encode([
-                'genres' => $genre,
+                'genres' => implode(', ',$genre),
                 'cast' => $actors,
                 'director' => $director,
                 'description' => $description,

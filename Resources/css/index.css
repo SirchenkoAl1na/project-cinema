@@ -1929,3 +1929,8 @@ div.row[style*="width:80%"] {
     align-self: flex-end;
   }
 }
+
+.link:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}

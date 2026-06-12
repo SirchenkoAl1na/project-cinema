@@ -166,7 +166,6 @@ class UserController extends Controller
         $top_films=FinanseService::topFilms();
 
         $data_half_year=FinanseService::lastHalfYear();
-        $data_month_detail=FinanseService::currentMonthDetail();
 
         self::render('Фінансова звітність', '/admin/statistic', 'admin', [
             'profit' => $profit,
@@ -174,7 +173,6 @@ class UserController extends Controller
             'average_ticket_price' => $average_ticket_price,
             'top_films' => $top_films,
             'data_half_year'=>$data_half_year,
-            'data_month_detail'=>$data_month_detail,
         ]);
     }
 

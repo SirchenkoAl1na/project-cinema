@@ -48,8 +48,9 @@ class GuestController extends Controller
             }
         }
         else if($view=='by_time'){
-            $times=array_column(DB::selectByQuery("SELECT DISTINCT s.time as time FROM seanses as s WHERE s.date='$date' ORDER BY STR_TO_DATE(s.time, '%H:%i')"),'time');
-             
+            // $times=array_column(DB::selectByQuery("SELECT DISTINCT s.time as time FROM seanses as s WHERE s.date='$date' ORDER BY STR_TO_DATE(s.time, '%H:%i')"),'time');
+            $times=array_column(DB::selectByQuery("SELECT s.time as time FROM seanses as s WHERE s.date='$date' ORDER BY STR_TO_DATE(s.time, '%H:%i')"),'time');
+            
             foreach($times as $time){
                 $seanse_on_time= Seanse::where("date='$date' AND time='$time'");
                 if(!empty($seanse_on_time)){
@@ -58,14 +59,17 @@ class GuestController extends Controller
                         return new Seanse($item);
                     }, $seanse_on_time);
 
-                    $seanse_on_time2=[];
-                    foreach($seanse_on_time as $seanse){
-                        $film_genres= !empty($seanse->film->genres) ? explode(', ', $seanse->film->genres) : [];
-                        if(in_array($filter_genre,$film_genres)) {
-                            $seanse_on_time2[]=$seanse;
+                    if(!empty($filter_genre)){
+                        $seanse_on_time2=[];
+                        foreach($seanse_on_time as $seanse){
+                            $film_genres= !empty($seanse->film->genres) ? explode(', ', $seanse->film->genres) : [];
+                            
+                            if(in_array($filter_genre,$film_genres)) {
+                                $seanse_on_time2[]=$seanse;
+                            }
                         }
+                        $seanse_on_time=$seanse_on_time2;
                     }
-                    $seanse_on_time=$seanse_on_time2;
                     if(!empty($seanse_on_time)){
                         $groups[]=[
                             'time'=>$time,

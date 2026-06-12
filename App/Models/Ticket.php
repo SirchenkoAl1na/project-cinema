@@ -46,7 +46,8 @@ class Ticket extends Model
     public static function isBougth(int $row, int $place, int $seanse_id): bool
     {
         $place_id = Place::where("`row`='$row' AND place='$place' AND hole_id=(SELECT hole_id FROM seanses WHERE id=$seanse_id)")[0]['id'] ?? null;
-        return count(DB::selectByQuery("SELECT t.* FROM tickets AS t JOIN sales as s ON s.id=t.sale_id WHERE s.seanse_id=$seanse_id AND place_id=$place_id;"))!=0;
+        $res=DB::selectByQuery("SELECT t.* FROM tickets AS t JOIN sales as s ON s.id=t.sale_id WHERE s.seanse_id=$seanse_id AND place_id=$place_id;");
+        return $res!=null?count($res)!=0:false;
     }
 
     public static function getTicket(int $row, int $place, int $seanse_id)

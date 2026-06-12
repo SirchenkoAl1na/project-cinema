@@ -87,7 +87,10 @@ class ScannerController extends Controller
         }
 
         $admin_name = $_SESSION['user']['full_name'] ?? 'Адмін';
-        $now        = date('Y-m-d H:i:s');
+        $zone = new \DateTimeZone('Europe/Kiev');
+        $date = new \DateTime('now', $zone);
+
+        $now= $date->format('Y-m-d H:i');
 
         DB::update('tickets', "id = {$ticket['id']}", [
             'qr_status'       => 'scanned',

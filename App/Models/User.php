@@ -19,6 +19,8 @@ class User extends Model
     public string $photo;
     public string $created_at;
 
+    public Employer $employer;
+
     public function __construct($data=null)
     {
         if(is_null($data)&& isset($_SESSION['user']['id'])){
@@ -38,12 +40,15 @@ class User extends Model
         $this->role = $data['role'] ?? '';
         $this->photo = $data['photo'] ?? 'default.png';
         $this->created_at = $data['created_at'] ?? '';
+
+    
         
     }
 
-    public function Employer()
+    public function Employer($id_=null)
     {
-        $employer = DB::selectOne('employee', 'id', 'user_id=' . $this->id);
+        $id=$id_==null?$this->id:$id_;
+        $employer = Employer::where("user_id=".$id)[0];
         if(is_null($employer)) return null;
         else return new Employer($employer['id']);
     }

@@ -19,30 +19,33 @@ class FilmController extends Controller
         $sort = isset($params['sort']) ? $params['sort'] : '';
 
         $whereClauses = [];
-        $orderBy = '';
+        $orderBy = $sort!='by_title_desc'?'title ASC':'title DESC';
+        
 
         if (!empty($search)) {
             $search = addslashes($search);
             $whereClauses[] = "title LIKE '{$search}%'";
         }
 
-        $today = Data::today();
+        $today = date('Y-m-d');
+
         switch ($filter) {
             case 'in_archive':
-                $whereClauses[] = 'end_date IS NOT NULL AND end_date < "'.$today.'"';
+                // прокат завершився
+                $whereClauses[] = 'end_date IS NOT NULL AND end_date < "' . $today . '"';
                 break;
+        
             case 'in_cinema':
-                $whereClauses[] = 'primiere_date >= "'.$today.'" AND end_date < "'.$today.'"';
+                // зараз у кінотеатрі
+                $whereClauses[] = 'primiere_date <= "' . $today . '" AND end_date >= "' . $today . '"';
                 break;
+        
             case 'wait_a_primiere':
-                $whereClauses[] = 'primiere_date > "'.$today.'"';
+                // прем'єра ще не відбулася
+                $whereClauses[] = 'primiere_date > "' . $today . '"';
                 break;
         }
-
-        // $allowedSortFields = ['title', 'primiere_date', 'end_date'];
-        // if (in_array($sort, $allowedSortFields)) {
-        //     $orderBy = $sort;
-        // }
+        
 
         $queryParams = [];
         if (!empty($whereClauses)) {
@@ -52,7 +55,7 @@ class FilmController extends Controller
             $queryParams['sort'] = $orderBy;
         }
         $films = Film::all($queryParams);
-        // Data::pa($films);
+        
         $films = array_map(function ($item) {
             return new Film($item);
         }, $films);
@@ -118,7 +121,13 @@ class FilmController extends Controller
 
     public function createbyadmin()
     {
-        self::render('Додавання фільму', '/admin_form/film_add', 'admin');
+        $genres=[];
+        foreach(Film::genresList() as $g){
+            $genres[$g]=$g;
+        }
+        self::render('Додавання фільму', '/admin_form/film_add', 'admin',[
+            'genres'=>$genres
+        ]);
     }
 
     public function storefilmbyadmin($data)
@@ -129,8 +138,13 @@ class FilmController extends Controller
 
     public function editbyadmin($params)
     {
+        $genres=[];
+        foreach(Film::genresList() as $g){
+            $genres[$g]=$g;
+        }
         self::render('Редагування фільму', '/admin_form/film_edit', 'admin', [
             'film' => new Film($params['id']),
+            'genres'=>$genres,
         ]);
     }
 

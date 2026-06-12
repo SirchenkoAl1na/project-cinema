@@ -54,6 +54,18 @@ class Form
                         $field_html = self::createSelect($field['name'], $field['options']);
                         }
                         break;
+                    case 'selectmultiple':
+                        if (isset($field['values']) && isset($field['attr'])) {
+                        $field_html = self::createSelectMultiple($field['name'], $field['options'], $field['attr'], $field['values']);
+                        } else if (!isset($field['values']) && isset($field['attr'])) {
+                        $field_html = self::createSelectMultiple($field['name'], $field['options'], $field['attr']);
+                        } else if (isset($field['values']) && !isset($field['attr'])) {
+                        $field_html = self::createSelectMultiple($field['name'], $field['options'], "", $field['values']);
+                        } else {
+                        $field_html = self::createSelectMultiple($field['name'], $field['options']);
+                        }
+                        break;
+
                     case 'textarea':
                         if (isset($field['value']) && isset($field['attr'])) {
                             $field_html = self::createTextarea($field['name'], $field['attr'], $field['value']);
@@ -103,6 +115,19 @@ class Form
             $select .= "<option value='$key' $selected>$option</option>";
         }
         $select .= "</select>";
+        return $select;
+    }
+    static function createSelectMultiple($name, array $options, string $attr = "", array $values = [])
+    {
+        $select = "<select name='{$name}[]' multiple $attr>";
+
+        foreach ($options as $key => $option) {
+            $selected = in_array($key, $values) ? "selected" : "";
+            $select .= "<option value='$key' $selected>$option</option>";
+        }
+    
+        $select .= "</select>";
+    
         return $select;
     }
 

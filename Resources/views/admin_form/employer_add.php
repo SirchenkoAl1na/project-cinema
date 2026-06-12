@@ -49,6 +49,13 @@ Form::Build([
         ],
         [
             'field_type' => 'input',
+            'name' => 'zarplata',
+            'label' => 'Заробітна плата',
+            'type' => 'number',
+            'attr' => "required min='0'",
+        ],
+        [
+            'field_type' => 'input',
             'name' => 'password',
             'label' => '*Пароль',
             'type' => 'password',

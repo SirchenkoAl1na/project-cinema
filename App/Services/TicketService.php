@@ -22,11 +22,15 @@ class TicketService
     public static function returnTicket($id){
         $ticket=new Ticket($id);
         $res=Ticket::delete("id=".$id);
+        $sale=Sale::find($ticket->sale_id);
+        $newsum=$sale['sum']-$ticket->price;
+        Sale::update("id=".$sale['id'],[
+            "sum"=>$newsum
+        ]);
         if(count(Ticket::where("sale_id=".$ticket->sale_id))==0){
             Sale::delete("id=".$ticket->sale_id);
         }
         return $res;
-
     }
 
     public static function basket(int $user_id): array

@@ -18,7 +18,7 @@ $current_month= "$month $year";
             </div>
             <div class="block w-full column j-c-around">
                 <h4>Найприбутковіший сеанс</h4>
-                <i><?= isset($the_most_popular_seanse)?$the_most_popular_seanse['film'].' ('.$the_most_popular_seanse['tickets_sold'].' квитків)':'Не визначено' ?></i>
+                <i><?= isset($the_most_popular_seanse)?$the_most_popular_seanse['film'].' ('.$the_most_popular_seanse['tickets_sold'].' квитків)'.' '.$the_most_popular_seanse['time']:'Не визначено' ?></i>
             </div>
         </div>
         <div class="row">

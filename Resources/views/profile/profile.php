@@ -66,10 +66,15 @@ basket -->
                         <button class="button button-icon" onclick="generatePDF('<?= $ticket->sale->seanse->film->title ?>','<?= \App\Data::dateFormat($ticket->sale->seanse->date) ?>','<?= $ticket->sale->seanse->time ?>','<?= $ticket->sale->seanse->hole->nomer ?>','<?= $ticket->place->row ?>','<?= $ticket->place->place ?>','<?= $ticket->price ?>','<?= $ticket->ticket_kod ?>','<?= $ticket->qr_token ?>')" title="Друк">
                             <i class="fa-solid fa-print"></i>
                         </button>
-
+                        <?php
+                        if($ticket->qr_status!="scanned"){
+                        ?>
                         <button class="button button-icon" onclick="returnTicket(<?=$ticket->id?>)" title="Видалити з кошика">
                             <i class="fa-solid fa-trash"></i>
                         </button>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
                 <?php

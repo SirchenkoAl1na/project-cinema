@@ -109,6 +109,7 @@ class SeanseController extends Controller
                     $seanse_on_time2=[];
                     foreach($seanse_on_time as $seanse){
                         $film_genres= !empty($seanse->film->genres) ? explode(', ', $seanse->film->genres) : [];
+                        
                         if(in_array($filter_genre,$film_genres)) {
                             $seanse_on_time2[]=$seanse;
                         }
@@ -190,8 +191,9 @@ class SeanseController extends Controller
     public function createbyadmin($params)
     {
         $film_id=$params['film_id'] ?? null;
+        $today= date('Y-m-d');
         $films=[];
-        foreach (Film::all() as $item) {
+        foreach (Film::where('primiere_date <= "' . $today . '" AND end_date >= "' . $today . '"') as $item) {
             $films[$item['id']]=$item['title'];
         }
         $holes=[];

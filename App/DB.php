@@ -36,8 +36,8 @@ class DB
             $query .= " LIMIT $limit";
         }
         try {
-            $result = $db->query($query);
             // echo $query;
+            $result = $db->query($query);
             if ($result === false) {
                 return [];
             }

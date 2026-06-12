@@ -16,10 +16,8 @@
     </div>
     <div class="sort">
         <h4>Сортувати:</h4>
-        <button class="button button-sort <?= $sort==''?'active':'' ?>" onclick="SFS.setSortParams('')">За ПІБ<i class="fa-solid fa-down-long"></i></button>
-        <button class="button button-sort <?= $sort=='by_name_desc'?'active':'' ?>" onclick="SFS.setSortParams('by_name_desc')">За ПІБ<i class="fa-solid fa-up-long"></i></button>
-        <button class="button button-sort <?= $sort=='by_login_asc'?'active':'' ?>" onclick="SFS.setSortParams('by_login_asc')">За логіном<i class="fa-solid fa-down-long"></i></button>
-        <button class="button button-sort <?= $sort=='by_login_desc'?'active':'' ?>" onclick="SFS.setSortParams('by_login_desc')">За логіном<i class="fa-solid fa-up-long"></i></button>
+        <button class="button button-sort <?= $sort==''?'active':'' ?>" onclick="SFS.setSortParams('')">За назвою<i class="fa-solid fa-down-long"></i></button>
+        <button class="button button-sort <?= $sort=='by_name_desc'?'active':'' ?>" onclick="SFS.setSortParams('by_title_desc')">За назвою<i class="fa-solid fa-up-long"></i></button>
     </div>
 </div>
 

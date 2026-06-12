@@ -17,6 +17,7 @@ class EmployerService
         $email = $data['email'];
         $phone = $data['phone'];
         $posada = $data['posada'];
+        $zarplata = $data['zarplata'];
         $password = $data['password'];
         // register user
         AuthService::register($full_name, $login, $password, $email,$phone,  'employer');
@@ -24,6 +25,7 @@ class EmployerService
         $user = DB::selectOne('users', '*', '', 'id desc');
         $res = Employer::create([
             'posada' => $posada,
+            'zarplata' => $zarplata,
             'user_id' => $user['id'],
         ]);
 
@@ -47,7 +49,7 @@ class EmployerService
         ]);
         $res = Employer::update('user_id='.$id, [
             'posada' => $posada,
-            'zarplata' => $zarplata,
+            'zarplata' => $zarplata
         ]);
 
         return $res;

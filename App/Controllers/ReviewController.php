@@ -119,6 +119,7 @@ class ReviewController extends Controller
 
     public function unblockbyadmin($params)
     {
+        $id=$params['id'];
         Review::update("id=".$id,[
             'is_blocked'=>false,
         ]);

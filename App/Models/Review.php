@@ -16,6 +16,7 @@ class Review extends Model
      public string $comment;
      public string $date;
      public bool $visible;
+     public bool $is_blocked;
      public ?int $parent_comment_id = null;
      public User $user;
      public Film $film;
@@ -33,6 +34,7 @@ class Review extends Model
           $this->comment = $data['comment'] ?? null;
           $this->date = $data['date'] ?? null;
           $this->visible = $data['visible'] ?? false;
+          $this->is_blocked = $data['is_blocked'] ?? false;
           $this->parent_comment_id = $data['parent_comment_id'] ?? null;
 
           $this->user = new User($this->user_id);

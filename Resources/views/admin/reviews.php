@@ -58,7 +58,17 @@ if (!isset($reviews) || empty($reviews)) {
                                 </div>
                                 <div class="row">
                                     <div class="buttons row a-c-center h-full">
-                                        <button class="button button-icon button-hide" onclick="location.href='/admin/reviews/block?id=<?= $review->id ?>'" title="Приховати"><i class="fa-solid fa-square-minus"></i></button>
+                                        <?php
+                                        if(!$review->is_blocked){
+                                        ?>
+                                            <button class="button button-icon button-hide" onclick="location.href='/admin/reviews/block?id=<?= $review->id ?>'" title="Приховати"><i class="fa-solid fa-square-minus"></i></button>
+                                        <?php
+                                        }else{
+                                            ?>
+                                            <button class="button button-icon button-hide" onclick="location.href='/admin/reviews/unblock?id=<?= $review->id ?>'" title="Повернути"><i class="fa-solid fa-square-minus"></i></button>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>

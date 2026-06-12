@@ -128,7 +128,11 @@ class FinanseService
         
         return [
             'film'=>!is_null($sale)?$sale->seanse->film->title:'',
+            'time'=>!is_null($sale)?$sale->seanse->time:'',
             'tickets_sold'=>$data[0]['tickets_count']??0,
         ];
+    }
+    public static function currentMonthDetail(){
+        return [];//TODO
     }
 }
