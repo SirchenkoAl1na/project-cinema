@@ -96,7 +96,8 @@ class SeanseController extends Controller
             }
         }
         else if($view=='by_time'){
-            $times=array_column(DB::selectByQuery("SELECT s.time as time FROM seanses as s WHERE s.date='$date' ORDER BY STR_TO_DATE(s.time, '%H:%i')"),'time');
+            // $times=array_column(DB::selectByQuery("SELECT s.time as time FROM seanses as s WHERE s.date='$date' ORDER BY STR_TO_DATE(s.time, '%H:%i')"),'time');
+            $times=array_column(DB::selectByQuery("SELECT s.time as time FROM seanses as s WHERE s.date='$date' GROUP BY s.time ORDER BY STR_TO_DATE(s.time, '%H:%i')"),'time');
             
             foreach($times as $time){
                 $seanse_on_time= Seanse::where("date='$date' AND time='$time'");
@@ -106,15 +107,17 @@ class SeanseController extends Controller
                         return new Seanse($item);
                     }, $seanse_on_time);
 
-                    $seanse_on_time2=[];
-                    foreach($seanse_on_time as $seanse){
-                        $film_genres= !empty($seanse->film->genres) ? explode(', ', $seanse->film->genres) : [];
-                        
-                        if(in_array($filter_genre,$film_genres)) {
-                            $seanse_on_time2[]=$seanse;
+                    if(!empty($filter_genre)){
+                        $seanse_on_time2=[];
+                        foreach($seanse_on_time as $seanse){
+                            $film_genres= !empty($seanse->film->genres) ? explode(', ', $seanse->film->genres) : [];
+                            
+                            if(in_array($filter_genre,$film_genres)) {
+                                $seanse_on_time2[]=$seanse;
+                            }
                         }
+                        $seanse_on_time=$seanse_on_time2;
                     }
-                    $seanse_on_time=$seanse_on_time2;
                     if(!empty($seanse_on_time)){
                         $groups[]=[
                             'time'=>$time,
@@ -196,6 +199,9 @@ class SeanseController extends Controller
         foreach (Film::where('primiere_date <= "' . $today . '" AND end_date >= "' . $today . '"') as $item) {
             $films[$item['id']]=$item['title'];
         }
+        foreach (Film::where('primiere_date >= "' . $today . '"') as $item) {
+            $films[$item['id']]=$item['title'] . " (Прим'єра: " . $item['primiere_date'] . ")";
+        }
         $holes=[];
         foreach (Hole::where("status='відкритий'") as $item) {
             $holes[$item['id']]=$item['nomer'];
@@ -209,6 +215,26 @@ class SeanseController extends Controller
             'tomorrow'=>Data::nextdate(Data::today()),
             'film_id'=>$film_id,
         ]);
+    }
+
+    public function APIseansetickets($params){
+        try {
+            $seanse_id=$params['seanse_id'];
+            $seanse = new Seanse($seanse_id);
+            $tickets = $seanse->tickets();
+            echo json_encode([
+                'status' => 1,
+                'message' => [
+                    'seanse' => $seanse,
+                    'tickets' => $tickets,
+                ],
+            ]);
+        } catch (\Exception $e) {
+            echo json_encode([
+                'status' => 0,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 
     public function storeseansebyadmin($request)

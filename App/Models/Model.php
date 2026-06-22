@@ -36,6 +36,7 @@ abstract class Model
                     $order_by = 'ORDER BY ' . $params['sort'];
                 }       
                 $query= "SELECT ".$select." FROM ".static::$table." ".$joins." ".$where." ".$order_by." ".$pagination." ;";
+                
                 return DB::selectByQuery($query);
             }
             catch(Exception $e){

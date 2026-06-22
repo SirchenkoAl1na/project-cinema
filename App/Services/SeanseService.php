@@ -36,11 +36,21 @@ class SeanseService
     
     public static function lastbyuser(int $user_id){
         $today=Data::today();
-        $data=Sale::where("sales.user_id=".$user_id." AND '".$today."'<=(SELECT seanses.date FROM seanses WHERE seanses.id=sales.seanse_id LIMIT 1) ORDER BY sales.date,sales.time DESC LIMIT 4");
+        $data=Sale::where("sales.user_id=".$user_id." AND '".$today."'<=(SELECT seanses.date FROM seanses WHERE seanses.id=sales.seanse_id LIMIT 1) ORDER BY sales.date,sales.time DESC");
         if(is_null($data)||empty($data)) return [];
-        return array_map(function($item){
-            return new Sale($item);
-        },$data);
+        $res=[];
+        foreach($data as $item){
+            // Якщо всі квитки проскановані
+            $sale=new Sale($item);
+
+            $is_all_scanned=true;
+            foreach($sale->tickets() as $ticket){
+                if(is_null($ticket['scanned_at'])) $is_all_scanned=false;
+            }
+
+            if($is_all_scanned) $res[]=$sale;
+        };
+        return $res;
     }
 
     public static function historyByUser(int $user_id){

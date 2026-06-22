@@ -17,7 +17,7 @@
     <div class="sort">
         <h4>Сортувати:</h4>
         <button class="button button-sort <?= $sort==''?'active':'' ?>" onclick="SFS.setSortParams('')">За ПІБ<i class="fa-solid fa-down-long"></i></button>
-        <button class="button button-sort <?= $sort==''?'active':'' ?>" onclick="SFS.setSortParams('')">За ПІБ<i class="fa-solid fa-up-long"></i></button>
+        <button class="button button-sort <?= $sort=='name_desc'?'active':'' ?>" onclick="SFS.setSortParams('name_desc')">За ПІБ<i class="fa-solid fa-up-long"></i></button>
     </div>
 </div>
 <?php

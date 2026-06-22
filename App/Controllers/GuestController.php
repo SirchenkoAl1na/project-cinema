@@ -49,7 +49,7 @@ class GuestController extends Controller
         }
         else if($view=='by_time'){
             // $times=array_column(DB::selectByQuery("SELECT DISTINCT s.time as time FROM seanses as s WHERE s.date='$date' ORDER BY STR_TO_DATE(s.time, '%H:%i')"),'time');
-            $times=array_column(DB::selectByQuery("SELECT s.time as time FROM seanses as s WHERE s.date='$date' ORDER BY STR_TO_DATE(s.time, '%H:%i')"),'time');
+            $times=array_column(DB::selectByQuery("SELECT s.time as time FROM seanses as s WHERE s.date='$date' GROUP BY s.time ORDER BY STR_TO_DATE(s.time, '%H:%i')"),'time');
             
             foreach($times as $time){
                 $seanse_on_time= Seanse::where("date='$date' AND time='$time'");

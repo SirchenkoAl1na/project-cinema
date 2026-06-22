@@ -11,26 +11,6 @@
         </div>
     </div>
     <div id="hole_places" class="block">    
-        <!-- hidden inputs -->
-        <input type="hidden" id="seanse_id" value="<?= $seanse->id ?>">
-        <!-- <input type="hidden" id="discount" value="<?= $film->id ?>"> -->
-        <?php
-        foreach ($tickets as $row) {
-            ?>
-            <div class="row j-c-center">
-                <?php
-                foreach ($row as $place) {
-                    $id = ($place['row']).'_'.($place['place']).'_'.$ticket_price;
-                    ?>
-                    <input type="checkbox" <?=$place['is_bougth'] ? 'disabled' : ''?> id="<?=$id?>" name="<?=$id ?>" onclick="CheckTicket(this.id)">
-                    <label for="<?=$id?>"></label>
-                    <?php
-                }
-            ?>
-            </div>
-            <?php
-        }
-        ?>
     </div>
 </div>
 <div class="column" style="width:400px">
@@ -75,7 +55,7 @@
     let sumCounter=document.getElementById('sum_counter');
     let current_sum=0;
     let discountBlock=document.getElementById('discount_block');
-    let seanseId=document.getElementById('seanse_id').value;
+    let seanseId=<?= $seanse->id ?>;
     let discount=0;
     UpdateTicketList();
 
@@ -119,7 +99,8 @@
             tickets.push({
                 row:row,
                 place:place,
-                price:price
+                price:price,
+                alerted:false,
             });
             UpdateTicketList();
         }else{
@@ -241,4 +222,51 @@
                 alert("Сталася помилка при пошуку клієнта");
         })
     }
+    let hole_places=document.getElementById('hole_places');
+    let ticket_price=150;
+function updateTickets(){
+
+    fetch('/api/seanses/tickets?seanse_id=<?= $seanse->id ?>')
+    .then(res=>res.json())
+    .then(data=>{
+        let alert_will_be=false;
+        //draw places
+        let html='<input type="hidden" id="seanse_id" value="<?= $seanse->id ?>">';
+        data.message.tickets.forEach(row=>{
+            html+='<div class="row j-c-center">';
+            row.forEach(ticket=>{
+                let id = ticket.row+"_"+ticket.place+"_"+ticket_price;
+                let is_bougth=ticket.is_bougth ? 'disabled' : '';
+                
+                let ticket_class='';
+                //if some ticket had bougthed
+                tickets.forEach(element => {
+                    if(element.alerted==false&&element.row==ticket.row&&element.place==ticket.place){
+                        if(is_bougth){
+                            ticket_class='ticket-bougthed'
+                            element.alerted=true;
+                            alert_will_be=true;
+                        
+                        }else{
+                            is_bougth='checked'
+                        }
+                    }
+                });
+                tickets=[];
+                UpdateTicketList();
+
+                
+                html+='<input type="checkbox" '+is_bougth+' id="'+id+'" name="'+id+'" onclick="CheckTicket(this.id)" class="'+ticket_class+'"><label for="'+id+'" title="Ряд '+ticket.row+' місце '+ticket.place+'"></label>';
+            });
+            html+='</div>';
+        });
+        hole_places.innerHTML=html;
+        if(alert_will_be) alert("Квитки відмічені зеленим були щойно куплені!");
+    })
+}
+    updateTickets();
+
+setInterval(function(){
+    updateTickets()
+}, 5000)//кожні 10 секунд
 </script>

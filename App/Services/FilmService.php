@@ -18,6 +18,7 @@ class FilmService
         $imdb_id=$data['imdb_id'];
         $original=$data['original'];
         $primiere_date=$data['primiere_date'];
+        $end_date=$data['end_date'];
         $duration=$data['duration'];
         $description=$data['description'];
         $genre=$data['genre'];
@@ -35,6 +36,7 @@ class FilmService
             'duration'=>$duration,
             'poster' => $poster, // збережеться filename
             'primiere_date' => $primiere_date,
+            'end_date' => $end_date,
             'description' => json_encode([
                 'genres' => implode(', ',$genre),
                 'cast' => $actors,

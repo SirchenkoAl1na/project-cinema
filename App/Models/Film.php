@@ -81,7 +81,7 @@ class Film extends Model
           $senases2=[];
           foreach($seanses as $seanse){
                if($seanse['date']==$today){
-                    if($seanse['time']>$time_now){
+                    if($seanse['time']>=$time_now){
                          $senases2[]=$seanse;
                     }
                }else{

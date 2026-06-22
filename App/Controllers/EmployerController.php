@@ -26,30 +26,28 @@ class EmployerController extends Controller
         // filter
         if($filter=="cashiers") $whereClauses[] = "id IN (SELECT user_id FROM employee WHERE posada='касир')";
         else if($filter=="ushers") $whereClauses[] = "id IN (SELECT user_id FROM employee WHERE posada='перевіряючий')";
-        //sorting
-        if($sort=='') $sort='by_name_asc';
-        $sortParams=explode("_",$sort);
-        if($sortParams[1]=='name') $sort="full_name";
-        else if($sortParams[1]=='login') $sort="login";
 
-        if($sortParams[2]=="asc") $sort.=" ASC";
-        else if($sortParams[2]=="desc") $sort.=" DESC";
+        $queryParams=[];
+        //sorting
+        if($sort=='') $queryParams['sort']="full_name ASC";
+        else if($sort=='name_desc') $queryParams['sort']="full_name DESC";
+
         
         // join all params
-        $queryParams=[];
         if (!empty($whereClauses)) $queryParams['filter'] = implode(' AND ', $whereClauses);
-        if (!empty($sort)) $queryParams['sort'] = $sort;
-    
+        
         $users=User::all($queryParams);
         $employee=array_map(function ($item) {
             return new Employer(DB::selectOne("employee",'*','user_id='.$item['id']));
         }, $users);
+
+        
         //add test data
         self::render('Список працівників', '/admin/employee', 'admin', [
             'employee' => $employee,
             'search'=>$search,
             'filter'=>$filter,
-            'sort'=>isset($params['sort']) ? $params['sort'] : '',
+            'sort'=>$sort,
         ]);
     }
 

@@ -24,3 +24,4 @@ $this->post('/api/tickets/returnbyuser',[TicketController::class, "APIreturnbyus
 $this->post('/api/reviews/add', [ReviewController::class, "APIaddreview"]);
 $this->post('/admin/scanner/validate', [ScannerController::class, "validate"], UserType::ADMIN);
 $this->post('/api/seanses/remove',[SeanseController::class,"APIremoveseanse"],UserType::ADMIN);
+$this->get('/api/seanses/tickets', [SeanseController::class, "APIseansetickets"]);

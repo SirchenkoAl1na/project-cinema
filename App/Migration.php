@@ -128,11 +128,11 @@ class Migration
                 ('Я обовязково виживу', 'Переглянути фільм жанру апокаліпсис','{\"genre\":\"Апокаліпсис\"}', 1, 5, 'I_Will_Survive.png','film_genre'),
                 -- ('Yupi kai eye', 'Бойовик','{\"genre\":\"Бойовик\"}', 1, 5, 'Yupi_kai_eye.png','film_genre'),
                 -- ('Kamehameha', 'Аніме','{\"genre\":\"Аніме\"}', 1, 5, 'Kamehameha.png','film_genre'),
-                ('Детектив', 'Детектив ','{\"genre\":\"Детектив\"}', 1, 5, 'Detective.png','film_genre'),
-                ('Містик', 'Містичний фільм','{\"genre\":\"Містика\"}', 1, 5, 'Mystic.png','film_genre'),
+                ('Детектив', 'За перегляд фільму жанру детектив ','{\"genre\":\"Детектив\"}', 1, 5, 'Detective.png','film_genre'),
+                ('Містик', 'За перегляд фільму жанру містика','{\"genre\":\"Містика\"}', 1, 5, 'Mystic.png','film_genre'),
                 -- ('Служитель Ктулху', 'Лавкрафтіанський жах','{\"genre\":\"Лавкрафтіанський жах\"}', 1, 5, 'Servant_of_Cthulhu.png','film_genre'),
-                ('Жахи', 'Жахи','{\"genre\":\"Жахи\"}', 1, 5, 'Horror.png','film_genre'),
-                ('Лицар', 'Фентазі','{\"genre\":\"Фентезі\"}', 1, 5, 'Knight.png','film_genre'),
+                ('Жахи', 'За перегляд фільму жанру жах','{\"genre\":\"Жахи\"}', 1, 5, 'Horror.png','film_genre'),
+                ('Лицар', 'За перегляд фільму жанру фентезі','{\"genre\":\"Фентезі\"}', 1, 5, 'Knight.png','film_genre'),
                 -- ('Бляшанка', 'Наукова фантастика 1','{\"genre\":\"Наукова фантастика\"}', 1, 5, 'Tin_Can.png','film_genre'),
                 -- ('Аугмент', 'Наукова фантастика 5','{\"genre\":\"Наукова фантастика\"}', 1, 5, 'Augment.png','film_genre'),
                 -- ('Кіборг', 'Наукова фантастика 10','{\"genre\":\"Наукова фантастика\"}', 1, 5, 'Cyborg.png','film_genre'),
@@ -141,10 +141,10 @@ class Migration
                 ('Батарейка', 'Був на ранковому сеансі (10-12)','{\"time\":\"10-12\"}', 3, 5, 'Battery.png','time'),
                 ('Романтик', '(Амур) За купівлю квитків на двох','{\"tickets\":\"2\"}',3, 5, 'Romantic.png','few_tickets'),
                 ('Душа компанії', 'За купілю 3 квитків','{\"tickets\":\"3\"}', 3, 5, 'Soul_of_the_Party.png','few_tickets'),
-                ('Початківець', '1 покупка(різних)','{\"tickets\":\"1\"}', 1, 5, 'Beginner.png','few_tickets'),
-                ('Досвідчений', '5 покупок(різних)','{\"tickets\":\"1\"}', 5, 5, 'Experienced.png','few_tickets'),
-                ('Герой', '10 покупок(різних)','{\"tickets\":\"1\"}', 10, 5, 'Hero.png','few_tickets'),
-                ('Кіноман', 'Переглянуто 50 фільмів','{\"tickets\":\"1\"}', 50, 5, 'Movie_Fan.png','few_tickets');"
+                ('Початківець', 'За 1 покупку','{\"tickets\":\"1\"}', 1, 5, 'Beginner.png','few_tickets'),
+                ('Досвідчений', 'За 5 покупок (різних)','{\"tickets\":\"1\"}', 5, 5, 'Experienced.png','few_tickets'),
+                ('Герой', 'За 10 покупок (різних)','{\"tickets\":\"1\"}', 10, 5, 'Hero.png','few_tickets'),
+                ('Кіноман', 'За перегляд 50 фільмів','{\"tickets\":\"1\"}', 50, 5, 'Movie_Fan.png','few_tickets');"
         ],
         [
             'table' => 'films',
@@ -276,8 +276,7 @@ class Migration
     private static function generateSeanses()
     {
         $currentDate = new \DateTime();
-        $seanseTimes = ['10:00', '14:00', '18:00', '22:00'];
-        $filmsCount = 20; // Кількість фільмів у БД
+        $seanseTimes = ['10:00','12:00', '14:00', '18:00', '20:00', '22:00'];
         $holesCount = 6;  // Кількість залів у БД
         $queries = [];
 
@@ -285,7 +284,7 @@ class Migration
             $randomDays = mt_rand(0, 30);
             $seanseDate = (clone $currentDate)->modify("+$randomDays days")->format('Y-m-d');
             $seanseTime = $seanseTimes[array_rand($seanseTimes)];
-            $filmId = mt_rand(1, $filmsCount);
+            $filmId = mt_rand(6,12);
             $holeId = mt_rand(1, $holesCount);
 
             $queries[] = "('$seanseDate', '$seanseTime', 'available', $filmId, $holeId)";

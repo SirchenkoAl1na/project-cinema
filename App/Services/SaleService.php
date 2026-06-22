@@ -17,7 +17,7 @@ class SaleService
        // stop if seanse buing is blocked
             $seanse = new Seanse($data['seanse_id']);
             if ($seanse->is_buing_blocked) {
-                return "Seanse is currently unavailable for ticket purchase. Please try again later.";
+                return false;
             }else{
                 // блокування продажу квитків для сеансу
                 Seanse::update('id='.$data['seanse_id'],[
@@ -28,6 +28,7 @@ class SaleService
         if(empty($tickets)){
             return false;
         }
+        
 
         $price=Data::$ticket_price;
         $date=Data::today();//дата
@@ -97,6 +98,7 @@ class SaleService
             $place_=$ticket['place'];
             $hole_id=$seanse->hole_id;
             $places=Place::where("`row`='$row' AND place='$place_' AND hole_id=$hole_id");
+
             $place_id=null;
             if(!empty($places)){
                $place_id=$places[0]['id']; 
@@ -104,6 +106,15 @@ class SaleService
             else{
                 return false;
             }
+
+            //якщо один з квитків вже куплений
+            $ticket_exists = Ticket::where("
+                place_id=$place_id
+                AND sale_id IN (
+                    SELECT id FROM sales WHERE seanse_id={$data['seanse_id']}
+                )
+            ");
+            if(count($ticket_exists)!=0) return false;
 
             $qr_token = hash('sha256', uniqid('qr_', true) . random_bytes(8));
 

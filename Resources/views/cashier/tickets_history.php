@@ -49,7 +49,7 @@ foreach ($tickets as $ticket) {
     <td><?php echo Data::dateFormat($ticket->sale->seanse->date); ?></td>
     <td><?php echo !is_null($ticket->sale->employer_id)?'<p class="sale-status sale-status-cashier">Продано касиром</p>':'<p class="sale-status sale-status-user">Продано онлайн</p>'; ?></td>
     <td><?php echo $ticket->sale->seanse->hole->nomer; ?></td>
-    <td><?php echo $ticket->price; ?> грн</td>
+    <td><?php echo $ticket->realPrice(); ?> грн</td>
     <td><?php echo $ticket->sale->dateAndTime(); ?></td>
     <td><?php echo $ticket->place->row; ?></td>
     <td><?php echo $ticket->place->place; ?></td>

@@ -332,6 +332,7 @@ button:focus {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
+  overflow: hidden;
 }
 .seanse-item {
   margin: 1px;
@@ -679,6 +680,13 @@ button:focus {
       background: #ff4d4d;
       cursor: not-allowed;
     }
+    
+    /* Зайняте місце */
+    #hole_places input[type="checkbox"]:disabled.ticket-bougthed + label {
+      background: green;
+      cursor: not-allowed;
+    }
+
     /* Блок кошика */
   /* #choosed_tickets {
       

@@ -23,6 +23,7 @@
 
 
             <?php
+            if(!empty($seanses)){
             foreach ($seanses as $date => $group) {
                 ?>
             <div class="seanses-on-day">
@@ -41,6 +42,10 @@
             </div>
 
             <?php
+            }}else{
+                ?>
+                <div class="empty-list"><p>На цей фільм немає сеансів/p></div>
+                <?php
             }
         ?>
         </div>

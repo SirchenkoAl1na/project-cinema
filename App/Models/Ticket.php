@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\DB;
+use App\Data;
 use App\Models\Place;
 use App\Models\Sale;
 
@@ -67,5 +68,23 @@ class Ticket extends Model
         $row=$place->row;
         $place_number=$place->place;
         return "Ряд $row місце $place_number";
+    }
+
+    public function realPrice()
+    {
+        if ($this->sale->discount == 0) {
+            return Data::$ticket_price;
+        }
+    
+        $tickets_count = count($this->sale->tickets());
+    
+        if ($tickets_count == 0) {
+            return 0;
+        }
+    
+        $sales_sum = $tickets_count * Data::$ticket_price;
+        $sales_sum -= ($sales_sum * $this->sale->discount) / 100;
+    
+        return round($sales_sum / $tickets_count, 2);
     }
 }

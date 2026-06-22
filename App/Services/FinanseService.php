@@ -13,8 +13,8 @@ class FinanseService
         $current_month_first_date = date('Y-m-01');
         $current_month_last_date = date('Y-m-t');
 
-        $data=DB::selectByQuery("SELECT SUM(sum) FROM sales WHERE date BETWEEN '$current_month_first_date' AND '$current_month_last_date'");
-        return $data[0]['SUM(sum)'] ?? 0;
+        $data=DB::selectByQuery("SELECT SUM(s.sum) as res FROM sales as s WHERE s.date BETWEEN '$current_month_first_date' AND '$current_month_last_date'");
+        return $data[0]['res'] ?? 0;
     }
     
     public static function soldTicketsCurrentMonth()
@@ -94,28 +94,66 @@ class FinanseService
         ];
     }
     
-    public static function profitByDay(){
-        $today=date('Y-m-d');
-        $query="SELECT COUNT(s.id) as sales_count,COUNT(t.id) as tickets_count,SUM(s.sum) as sales_sum FROM sales as s JOIN tickets as t ON s.id=t.sale_id WHERE date='$today'";
-        $online=DB::selectByQuery($query." AND s.employer_id IS NULL");//for online
-        $by_cashier=DB::selectByQuery($query." AND s.employer_id IS NOT NULL");//for cashier
+    public static function profitByDay()
+{
+    $today = date('Y-m-d');
 
-        $online_profit=$online[0]['sales_sum']??0;
-        $cashier_profit=$by_cashier[0]['sales_sum']??0;
-        
-        $online=$online[0]['tickets_count']??0;
-        $by_cashier=$by_cashier[0]['tickets_count']??0;
+    $onlineQuery = "
+        SELECT
+            COUNT(*) AS sales_count,
+            COALESCE(SUM(sum), 0) AS sales_sum
+        FROM sales
+        WHERE date = '$today'
+        AND employer_id IS NULL
+    ";
 
-        return [
-            'total_profit'=>$online_profit+$cashier_profit,
-            'online_profit'=>$online_profit,
-            'cashier_profit'=>$cashier_profit,
+    $cashierQuery = "
+        SELECT
+            COUNT(*) AS sales_count,
+            COALESCE(SUM(sum), 0) AS sales_sum
+        FROM sales
+        WHERE date = '$today'
+        AND employer_id IS NOT NULL
+    ";
 
-            'total_tickets'=>$online+$by_cashier,
-            'online_tickets'=>$online,
-            'cashier_tickets'=>$by_cashier,
-        ];
-    }
+    $onlineTicketsQuery = "
+        SELECT COUNT(t.id) AS tickets_count
+        FROM tickets t
+        JOIN sales s ON s.id = t.sale_id
+        WHERE s.date = '$today'
+        AND s.employer_id IS NULL
+    ";
+
+    $cashierTicketsQuery = "
+        SELECT COUNT(t.id) AS tickets_count
+        FROM tickets t
+        JOIN sales s ON s.id = t.sale_id
+        WHERE s.date = '$today'
+        AND s.employer_id IS NOT NULL
+    ";
+
+    $online = DB::selectByQuery($onlineQuery);
+    $cashier = DB::selectByQuery($cashierQuery);
+
+    $onlineTickets = DB::selectByQuery($onlineTicketsQuery);
+    $cashierTickets = DB::selectByQuery($cashierTicketsQuery);
+
+    $online_profit = $online[0]['sales_sum'] ?? 0;
+    $cashier_profit = $cashier[0]['sales_sum'] ?? 0;
+
+    $online_tickets = $onlineTickets[0]['tickets_count'] ?? 0;
+    $cashier_tickets = $cashierTickets[0]['tickets_count'] ?? 0;
+
+    return [
+        'total_profit' => $online_profit + $cashier_profit,
+        'online_profit' => $online_profit,
+        'cashier_profit' => $cashier_profit,
+
+        'total_tickets' => $online_tickets + $cashier_tickets,
+        'online_tickets' => $online_tickets,
+        'cashier_tickets' => $cashier_tickets,
+    ];
+}
 
 
     public static function theMostPopularSeanse(){

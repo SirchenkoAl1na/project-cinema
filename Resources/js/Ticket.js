@@ -16,7 +16,7 @@ function generatePDF(filmTitle, date, time,hole,row,place, price,ticket_kod,qr_t
     doc.text("Ряд: " + row, 20, 60);
     doc.text("Місце: " + place, 20, 70);
     doc.text("Ціна: " + price + " грн", 20, 80);
-    doc.text("Код квитка: " + ticket_kod, 20, 90);
+    // doc.text("Код квитка: " + ticket_kod, 20, 90);
 
      // 👉 генеруємо QR в canvas
     const qrContainer = document.getElementById("qr_temp");

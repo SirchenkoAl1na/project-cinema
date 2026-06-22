@@ -136,6 +136,7 @@ main {
     margin-left: 250px;
     padding: 30px;
     flex: 1;
+    scrollbar-gutter: stable;
 }
 
 /* block */
@@ -553,11 +554,12 @@ border-radius: 10px 0 0 10px;
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
+overflow:hiden;
 /* grid-template-columns: auto auto auto; */
 }
 
 #seanses_grid .seanse-item{
-margin:5px;
+margin:0px;
 padding: 5px;
 width: fit-content;
 border:1px solid var(--btn);
@@ -809,6 +811,11 @@ color: var(--text);
   /* Зайняте місце */
   #hole_places input[type="checkbox"]:disabled + label {
     background: #ff4d4d;
+    cursor: not-allowed;
+  }
+  /* Зайняте місце */
+  #hole_places input[type="checkbox"]:disabled.ticket-bougthed + label {
+    background: green;
     cursor: not-allowed;
   }
   /* Блок кошика */
@@ -1202,6 +1209,7 @@ color: var(--text);
 main {
     max-width: 100%;
     overflow-x: hidden;
+    scrollbar-gutter: stable;
 }
 .block {
     max-width: 100%;
