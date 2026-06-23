@@ -248,20 +248,21 @@ function updateTickets(){
                             alert_will_be=true;
                         
                         }else{
-                            is_bougth='checked'
+                          //  is_bougth='checked'
                         }
                     }
                 });
-                tickets=[];
-                UpdateTicketList();
 
-                
                 html+='<input type="checkbox" '+is_bougth+' id="'+id+'" name="'+id+'" onclick="CheckTicket(this.id)" class="'+ticket_class+'"><label for="'+id+'" title="Ряд '+ticket.row+' місце '+ticket.place+'"></label>';
             });
             html+='</div>';
         });
-        hole_places.innerHTML=html;
-        if(alert_will_be) alert("Квитки відмічені зеленим були щойно куплені!");
+        hole_places.innerHTML=html;if(alert_will_be) {
+                tickets=[];
+                UpdateTicketList();
+
+          alert("Квитки відмічені зеленим були щойно куплені!");  
+        }
     })
 }
     updateTickets();
